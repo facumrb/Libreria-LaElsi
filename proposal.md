@@ -2,19 +2,21 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 49831 - Nicola, Valentino (com 302)
+* 48808 - Ramírez, Facundo (com 302)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app (crear)](http://hyperlinkToGihubOrGitlab)
+* [backend app (crear)](http://hyperlinkToGihubOrGitlab)
+* *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+La librería “LaElsi” es un negocio dedicado a la venta de productos de librería, juguetería, imprenta digital y sellos. El sitio web debe contemplar ventas, administración y distribución de pedidos desde cualquier parte de Rosario, con el objetivo de ofrecer y expandir los servicios del negocio a más personas.
+
 
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo (Hacer)]()
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
