@@ -6,9 +6,8 @@
 * 48808 - Ramírez, Facundo (com 302)
 
 ### Repositorios
-* [frontend app (crear)](http://hyperlinkToGihubOrGitlab)
-* [backend app (crear)](http://hyperlinkToGihubOrGitlab)
-* *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/facumrb/Libreria-LaElsi/tree/main/Front-End)
+* [backend app](https://github.com/facumrb/Libreria-LaElsi/tree/main/Back-End)
 
 ## Tema
 ### Descripción
