@@ -22,7 +22,7 @@ La librería “LaElsi” es un negocio dedicado a la venta de productos de libr
 
 ![Modelo de dominio](/Imagenes/ModeloDeDominio-MD-Simplificado.png)
 
-_Nota_: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+_Nota_: Actualizar modelo y utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional
 
@@ -30,7 +30,7 @@ Desde que el cliente entra al sitio web para hacer un pedido hasta que se regist
 
 ### Alcance Mínimo
 
-_Nota_: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El
+_Nota_: Completar lo que falta (listados y CUU).
 
 Regularidad:
 |Req|Detalle|
@@ -48,8 +48,8 @@ Adicionales para Aprobación
 
 ### Alcance Adicional Voluntario
 
-| Req      | Detalle                                                                                                                                                                                                             |
-| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Listados | 1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes |
-| CUU/Epic | 1. Consumir servicios<br>2. Cancelación de reserva                                                                                                                                                                  |
-| Otros    | 1. Envío de recordatorio de reserva por email                                                                                                                                                                       |
+|Req|Detalle|
+|:-|:-|
+|Listados (Hacer)|1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes |
+|CUU/Epic (Hacer)| 1. Consumir servicios<br>2. Cancelación de reserva|
+|Otros (Hacer)| 1. Envío de recordatorio de reserva por email|
