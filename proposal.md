@@ -26,7 +26,7 @@ _Nota_: incluir un link con la imagen de un modelo, puede ser modelo de dominio,
 
 ## Alcance Funcional
 
-![Ver qué significa]
+Desde que el cliente entra al sitio web para hacer un pedido hasta que se registran los datos del pedido en el historial de pedidos.
 
 ### Alcance Mínimo
 
@@ -35,20 +35,18 @@ _Nota_: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistem
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Juguete<br>3. CRUD Librería<br>4. CRUD Forma de Pago|
+|CRUD dependiente|1. CRUD Pedido {depende de} CRUD Cliente<br>2. CRUD Venta {depende de} CRUD Pedido|
+|Listado<br>+<br>detalle (Hacer)| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
+|CUU/Epic (Hacer)|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Juguete<br>2. CRUD Librería<br>3. CRUD Computación<br>4. CRUD Sello<br>5. CRUD Cliente<br>6. CRUD Pedido<br>7. CRUD Venta<br>8. CRUD Forma de Pago|
+|CUU/Epic (Hacer)|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
 ### Alcance Adicional Voluntario
-
-_Nota_: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
 | Req      | Detalle                                                                                                                                                                                                             |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
