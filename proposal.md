@@ -37,20 +37,19 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Cliente<br>2. CRUD Librería|
 |CRUD dependiente|1. CRUD Pedido {depende de} CRUD Cliente<br>2. CRUD Venta {depende de} CRUD Pedido|
-|Listado<br>+<br>detalle| 1. Listado de artículos más vendidos u ordenados por mayor/menor precio, con límite de hasta 16 artículos por página => detalle CRUD Librería.|
+|Listado<br>+<br>detalle|1. Listado de artículos más vendidos u ordenados por mayor/menor precio, con límite de hasta 16 artículos por página => detalle CRUD Librería.|
 |CUU/Epic|1. Crear Pedido|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Cliente<br>2. CRUD Librería<br>3. CRUD Juguete<br>4. CRUD Computación<br>5. CRUD ComprobanteVenta<br>6. CRUD Pedido (el cliente arma carrito)<br>7. CRUD Venta (el cliente pagó)|
+|CRUD|1. CRUD Cliente<br>2. CRUD Librería<br>3. CRUD Juguete<br>4. CRUD Computación<br>5. CRUD ComprobanteVenta<br>6. CRUD Pedido (el cliente arma carrito)<br>7. CRUD Venta (el cliente pagó)|
 |CUU/Epic|1. Crear Pedido<br>2. Actualizar stock<br>3. Crear usuario|
 
 ### Alcance Adicional Voluntario
 
-| Req                                                                                                                                                                                      | Detalle                                                                                                                                                                                                                          |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Listados                                                                                                                                                                                 | 1. Listado de productos divididos por secciones y subsecciones de artículos y luego ordenado por cantidad (Stock total) <br>2. Listado de pedidos realizados en el tiempo por el cliente. <br>3. Listado de artículos sin stock. |
-| <br> 4. Listado de productos destacados en formato carrusel. <br> 5. Listado de productos que se reservan por falta de stock. <br> 6. Listado de pedidos que al empleado le falta armar. |
-| CUU/Epic                                                                                                                                                                                 | 1. Asignar/Eliminar promociones.<br>2. Agregar/Eliminar productos.                                                                                                                                                               |
-| Otros                                                                                                                                                                                    | 1. Contacto automático por email, whatsapp, etc.                                                                                                                                                                                 |
+| Req      | Detalle                                                                                                                                                                                                                                                                                                                                                                                                           |
+| :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Listados | 1. Listado de productos divididos por secciones y subsecciones de artículos y luego ordenado por cantidad (Stock total)<br>2. Listado de pedidos realizados en el tiempo por el cliente.<br>3. Listado de artículos sin stock.<br>4. Listado de productos destacados en formato carrusel.<br>5. Listado de productos que se reservan por falta de stock.<br>6. Listado de pedidos que al empleado le falta armar. |
+| CUU/Epic | 1. Asignar/Eliminar promociones.<br>2. Agregar/Eliminar productos.                                                                                                                                                                                                                                                                                                                                                |
+| Otros    | 1. Contacto automático por email, whatsapp, etc.                                                                                                                                                                                                                                                                                                                                                                  |
