@@ -5,7 +5,7 @@
 ### Integrantes
 
 - 49831 - Nicola, Valentino (com 302)
-- 48808 - Ramírez, Facundo (com 302)
+- 48808 - Ramírez, Facundo  (com 302)
 
 ### Repositorios
 
@@ -30,8 +30,6 @@ Desde que el cliente entra al sitio web para hacer un pedido hasta que se regist
 
 ### Alcance Mínimo
 
-_Nota_: Completar lo que falta (listados y CUU).
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
@@ -48,8 +46,8 @@ Adicionales para Aprobación
 
 ### Alcance Adicional Voluntario
 
-| Req      | Detalle                                                                                                                                                                                                                                                                                                                                                                                                           |
-| :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Listados | 1. Listado de productos divididos por secciones y subsecciones de artículos y luego ordenado por cantidad (Stock total)<br>2. Listado de pedidos realizados en el tiempo por el cliente.<br>3. Listado de artículos sin stock.<br>4. Listado de productos destacados en formato carrusel.<br>5. Listado de productos que se reservan por falta de stock.<br>6. Listado de pedidos que al empleado le falta armar. |
-| CUU/Epic | 1. Asignar/Eliminar promociones.<br>2. Agregar/Eliminar productos.                                                                                                                                                                                                                                                                                                                                                |
-| Otros    | 1. Contacto automático por email, whatsapp, etc.                                                                                                                                                                                                                                                                                                                                                                  |
+|Req|Detalle|
+|:-|:-|
+|Listados|1. Listado de productos divididos por secciones y subsecciones de artículos y luego ordenado por cantidad (Stock total)<br>2. Listado de pedidos realizados en el tiempo por el cliente.<br>3. Listado de artículos sin stock.<br>4. Listado de productos destacados en formato carrusel.<br>5. Listado de productos que se reservan por falta de stock.<br>6. Listado de pedidos que al empleado le falta armar.|
+|CUU/Epic|1. Asignar/Eliminar promociones.<br>2. Agregar/Eliminar productos.|
+|Otros|1. Contacto automático por email, whatsapp, etc.|
