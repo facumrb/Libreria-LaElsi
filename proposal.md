@@ -33,7 +33,7 @@ Desde que el cliente entra al sitio web para hacer un pedido hasta que se regist
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Cliente<br>2. CRUD Librería|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Producto|
 |CRUD dependiente|1. CRUD Pedido {depende de} CRUD Cliente<br>2. CRUD Venta {depende de} CRUD Pedido|
 |Listado<br>+<br>detalle|1. Listado de artículos más vendidos y listados de artículos ordenados por mayor y menor precio, con límite de hasta 16 artículos por página => detalle CRUD Librería.|
 |CUU/Epic|1. Crear Venta|
