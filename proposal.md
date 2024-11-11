@@ -41,8 +41,8 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Cliente<br>2. CRUD Librería<br>3. CRUD Juguete<br>4. CRUD Computación<br>5. CRUD ComprobanteVenta<br>6. CRUD Pedido (el cliente arma carrito)<br>7. CRUD Venta (el cliente pagó)|
-|CUU/Epic|1. Crear Pedido<br>2. Actualizar stock<br>3. Crear usuario|
+|CRUD|1. CRUD Cliente<br>2. CRUD Producto<br>3. CRUD Categoría<br>4. CRUD ?????????<br>5. CRUD ComprobanteVenta (el cliente pagó)<br>6. CRUD Pedido <br>7. CRUD Venta (el cliente arma carrito)|
+|CUU/Epic|1. Crear comprobante de venta<br>2. Actualizar stock<br>3. Crear usuario|
 
 ### Alcance Adicional Voluntario
 
