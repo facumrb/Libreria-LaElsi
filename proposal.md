@@ -44,7 +44,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD|1. CRUD Cliente<br>2. CRUD Categoría<br>3. CRUD FormaPago|
-|CRUDs dependientes|1. CRUD Pedido {depende de} CRUD Cliente y Producto|2. CRUD Venta {depende de} CRUD Pedido<br>3. CRUD ComprobanteVenta {depende de} CRUD Venta, Cliente y FormaPago<br>4. CRUD Producto {depende de} CRUD Categoría|
+|CRUDs dependientes|1. CRUD Pedido {depende de} CRUD Cliente y Producto<br>2. CRUD Venta {depende de} CRUD Pedido<br>3. CRUD ComprobanteVenta {depende de} CRUD Venta, Cliente y FormaPago<br>4. CRUD Producto {depende de} CRUD Categoría|
 |Listado<br>+<br>detalle|1. Listado de productos más vendidos, con límite de hasta 16 productos por página y con detalle al abrir producto<br>2. Listado de productos ordenados por mayor precio, con límite de hasta 16 productos por página y con detalle al abrir producto|
 |CUU/Epic|1. Dar de alta un Cliente<br>2. Crear Pedido<br>3. Crear Venta<br>4. Crear comprobante de venta<br>5. Actualizar stock|
 
