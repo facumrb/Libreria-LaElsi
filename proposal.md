@@ -33,14 +33,12 @@ Desde que el cliente entra al sitio web para hacer un pedido hasta que se regist
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Cliente<br>2. CRUD Categoría|
-|CRUD dependiente|1. CRUD Producto {depende de} CRUD Categoría|
+|CRUD simple|1. CRUD Cliente (genera Dirección)<br>2. CRUD Categoría|
+|CRUD dependiente|1. CRUD Producto {depende de} CRUD Categoría (genera Multimedia, HistorialPrecio, Item)|
 |Listado<br>+<br>detalle|1. Listados de productos ordenados por menor precio, con límite de hasta 16 productos por página y con detalle al abrir producto|
 |CUU/Epic|1. Dar de alta un Producto|
 
-Ver Dirección, porque es dependiente de Cliente
-
-Adicionales para Aprobación
+Adicionales para Aprobación (ver lo que falta agregar)
 |Req|Detalle|
 |:-|:-|
 |CRUD|1. CRUD Cliente<br>2. CRUD Categoría<br>3. CRUD FormaPago|
