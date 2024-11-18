@@ -30,11 +30,6 @@ Desde que el cliente entra al sitio web para hacer un pedido hasta que se regist
 
 ### Alcance Mínimo
 
-Escribit acá:
-/
-
-/
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
