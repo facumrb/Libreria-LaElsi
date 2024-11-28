@@ -1,0 +1,2 @@
+Revisar Administrador (métodos) y su lógica
+Revisar lógica de Categoría e Item
