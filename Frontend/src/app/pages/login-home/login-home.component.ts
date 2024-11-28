@@ -1,5 +1,5 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-home',
@@ -15,9 +16,10 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './login-home.component.html',
   styleUrl: './login-home.component.css',
 })
-export class LoginHomeComponent {
+export class LoginHomeComponent implements OnInit {
   formLoginAdmin!: FormGroup;
   private _apiService = inject(ApiService);
+  private _authService = inject(AuthService);
   private _router = inject(Router);
   loading: boolean = false;
   passwordVisible: boolean = false;
@@ -25,23 +27,48 @@ export class LoginHomeComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.formLoginAdmin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      //email: ['', [Validators.required, Validators.email]],
+      usuario: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')],
+      ],
       password: ['', [Validators.required]],
+    });
+  }
+
+  ngOnInit(): void {
+    this._apiService.getAllAdmins().subscribe((admins) => {
+      console.log(admins);
     });
   }
 
   enviar(event: Event): boolean {
     event.preventDefault();
+
     if (this.formLoginAdmin.invalid) {
       this.formLoginAdmin.markAllAsTouched();
       return false;
     } else {
       this.loading = true;
-      setTimeout(() => {
-        console.log(this.formLoginAdmin.value);
-        this.loading = false;
-        this._router.navigate(['/admin/home']);
-      }, 700); // Simula un tiempo de espera
+
+      const { usuario, password } = this.formLoginAdmin.value;
+
+      // Usar el servicio de autenticación para hacer login
+      this._authService.login(usuario, password).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.loading = false;
+          // Redirigir al home del administrador si el login es exitoso
+          this._router.navigate(['/admin/home']);
+        },
+        error: (error) => {
+          console.error(error);
+          this.loading = false;
+          // Mostrar mensaje de error si las credenciales son incorrectas
+          alert(error.error.message || 'Error en el inicio de sesión');
+        },
+      });
+
       return true;
     }
   }
