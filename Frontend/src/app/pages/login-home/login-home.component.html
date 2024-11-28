@@ -1,0 +1,77 @@
+<div class="login-container">
+  <div class="card shadow">
+    <div class="card-body">
+      <h2 class="text-center mb-3 title-style">Panel Administrador</h2>
+      <form
+        [formGroup]="formLoginAdmin"
+        class="row g-2 needs-validation"
+        novalidate
+        (ngSubmit)="enviar($event)"
+      >
+        <!-- Campo de correo electrónico -->
+        <div class="mb-2">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="name@gmail.com"
+            formControlName="email"
+            [ngClass]="{
+              'is-invalid':
+                hasErrors('email', 'required') || hasErrors('email', 'email')
+            }"
+          />
+          <!-- Contenedor de mensajes de error -->
+          <div class="error-container">
+            @if (hasErrors('email', 'required')) {
+            <div class="text-danger">El correo es obligatorio.</div>
+            } @if (hasErrors('email', 'email')) {
+            <div class="text-danger">El formato del correo es inválido.</div>
+            }
+          </div>
+        </div>
+
+        <!-- Campo de contraseña -->
+        <div class="mb-2 position-relative">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="password-container">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              class="form-control"
+              id="password"
+              placeholder="Contraseña"
+              formControlName="password"
+              (input)="onPasswordInput()"
+              [ngClass]="{
+                'is-invalid': hasErrors('password', 'required')
+              }"
+            />
+            @if(showEyeIcon){
+            <i
+              class="bi toggle-password"
+              [ngClass]="passwordVisible ? 'bi-eye' : 'bi-eye-slash'"
+              (click)="togglePasswordVisibility()"
+            ></i
+            >}
+          </div>
+          <!-- Contenedor de mensajes de error -->
+          <div class="error-container">
+            @if (hasErrors('password', 'required')) {
+            <div class="text-danger">La contraseña es obligatoria.</div>
+            }
+          </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <button class="btn btn-primary w-100" type="submit">
+            @if (loading) {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            } Iniciar Sesión
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

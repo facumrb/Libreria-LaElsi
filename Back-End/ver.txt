@@ -1,2 +1,3 @@
+¿Cómo logro que el atributo "foto" de Item acceda a la imagen de la carpeta "imagenes" de mi proyecto?
 Revisar Administrador (métodos) y su lógica
 Revisar lógica de Categoría e Item

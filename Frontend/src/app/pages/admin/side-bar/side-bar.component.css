@@ -1,0 +1,58 @@
+.sidebar-container {
+  width: 200px; /* Ajuste del ancho */
+  height: 100vh;
+  background-color: #343a40; /* Fondo oscuro */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra lateral */
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sidebar-header h3 {
+  font-size: 1.5rem;
+  color: #f8f9fa; /* Texto claro */
+  text-transform: uppercase;
+  margin: 0;
+  border-bottom: 1px solid #495057; /* Línea divisoria */
+  padding-bottom: 0.5rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.sidebar-button {
+  display: block; /* Asegura que el botón se comporte como bloque */
+  width: 100%; /* Forza el ancho máximo */
+  padding: 1rem; /* Espaciado interno */
+  font-size: 1rem;
+  color: #f8f9fa;
+  background-color: #495057; /* Color de botón */
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
+}
+
+.sidebar-button:hover {
+  background-color: #6c757d; /* Cambio de color al hover */
+}
+
+.sidebar-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(248, 249, 250, 0.5);
+}

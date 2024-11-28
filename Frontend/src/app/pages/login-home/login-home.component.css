@@ -1,0 +1,100 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.card {
+  max-width: 475px;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.title-style {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 3px solid #ccc;
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra al pasar el cursor */
+}
+
+.text-decoration-none:hover {
+  text-decoration: underline;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.bi-eye {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* Ajustes de padding para que el ícono no se solape con el texto */
+input.form-control {
+  padding-right: 40px; /* Da espacio al ícono en el lado derecho */
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+  transition: border-color 0.3s ease;
+}
+
+/* Reserva espacio fijo para los mensajes de error */
+.form-control + .text-danger {
+  min-height: 1.5rem; /* Altura fija para el mensaje */
+  margin-top: 0.25rem; /* Espaciado superior */
+  visibility: hidden; /* Oculta el mensaje visualmente */
+  opacity: 0; /* Lo hace invisible */
+  transition: opacity 0.3s ease; /* Suaviza la aparición */
+}
+
+/* Muestra el mensaje de error cuando está visible */
+.form-control.is-invalid + .text-danger {
+  visibility: visible;
+  opacity: 1; /* Aparece suavemente */
+}
+
+/* Contenedor de mensajes de error */
+.error-container {
+  min-height: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}

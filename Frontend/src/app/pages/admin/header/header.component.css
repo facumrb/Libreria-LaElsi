@@ -1,0 +1,41 @@
+.admin-header {
+  display: flex;
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo {
+  height: 60px;
+  padding-right: 1rem; /* Ajusta el espacio entre logo y título */
+  cursor: pointer;
+}
+
+.header-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+  cursor: pointer;
+  display: inline-block; /* Asegura que solo ocupe el ancho del texto */
+}
+
+.header-account {
+  position: relative;
+  margin-left: auto; /* Empuja el contenido a la derecha */
+}
+
+.account-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.account-btn i {
+  font-size: 1.5rem;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+}
