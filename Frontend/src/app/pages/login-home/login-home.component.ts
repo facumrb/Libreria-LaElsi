@@ -1,11 +1,13 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-login-home',
@@ -15,6 +17,8 @@ import {
 })
 export class LoginHomeComponent {
   formLoginAdmin!: FormGroup;
+  private _apiService = inject(ApiService);
+  private _router = inject(Router);
   loading: boolean = false;
   passwordVisible: boolean = false;
   showEyeIcon: boolean = false;
@@ -31,15 +35,15 @@ export class LoginHomeComponent {
     if (this.formLoginAdmin.invalid) {
       this.formLoginAdmin.markAllAsTouched();
       return false;
+    } else {
+      this.loading = true;
+      setTimeout(() => {
+        console.log(this.formLoginAdmin.value);
+        this.loading = false;
+        this._router.navigate(['/admin/home']);
+      }, 700); // Simula un tiempo de espera
+      return true;
     }
-
-    this.loading = true;
-    setTimeout(() => {
-      console.log(this.formLoginAdmin.value);
-      this.loading = false;
-    }, 700); // Simula un tiempo de espera
-
-    return true;
   }
 
   hasErrors(field: string, typeError: string) {
