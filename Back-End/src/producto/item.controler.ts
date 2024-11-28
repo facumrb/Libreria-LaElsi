@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Item } from './item.entity.js';
 import { orm } from '../shared/db/orm.js';
+import multer from 'multer';
+import path from 'path';
 
 const em = orm.em;
 
@@ -28,6 +30,61 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
     }
   });
   next();
+}
+
+// Configuración de multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'imagenesProductos/'); // Carpeta donde se guardarán las imágenes
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Renombrar el archivo
+  },
+});
+
+const imagenProducto = multer({ storage });
+
+// Función para agregar un nuevo item con la imagen
+async function add(req: Request, res: Response) {
+  try {
+    const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
+    const foto = req.file?.path; // Obtener la ruta de la imagen cargada
+
+    // Validaciones para asegurarse de que los atributos no sean nulos
+    if (!nombre) {
+      return res.status(400).json({ message: 'El nombre es requerido' });
+    }
+    if (!categoria) {
+      return res.status(400).json({ message: 'La categoría es requerida' });
+    }
+    if (precio === undefined || precio === null) {
+      return res.status(400).json({ message: 'El precio es requerido' });
+    }
+    if (!marca) {
+      return res.status(400).json({ message: 'La marca es requerida' });
+    }
+    if (stock === undefined || stock === null) {
+      return res.status(400).json({ message: 'El stock es requerido' });
+    }
+
+    // Crear un nuevo item utilizando los datos sanitizados del cuerpo de la solicitud
+    const itemData = {
+      ...req.body.sanitizedInput,
+      foto, // Asignar la ruta de la imagen al item
+      estado: req.body.sanitizedInput.estado || 'Activo',
+      cantVendidos: 0, // Inicializar con 0
+      // aReservar: false,
+      // cantidadAReservar: 0,
+    };
+
+    const item = em.create(Item, itemData);
+    await em.flush(); // Guardar el nuevo item en la base de datos
+
+    res.status(201).json({ message: 'Item creado', data: item });
+  } catch (error: any) {
+    console.error('Error al crear el item:', error);
+    res.status(500).json({ message: 'Error al crear el item: ' + error.message });
+  }
 }
 
 // Función para buscar items por texto
@@ -75,47 +132,6 @@ async function findOne(req: Request, res: Response) {
   }
 }
 
-async function add(req: Request, res: Response) {
-  try {
-    // Extraer datos sanitizados
-    const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
-
-    // Validaciones para asegurarse de que los atributos no sean nulos
-    if (!nombre) {
-      return res.status(400).json({ message: 'El nombre es requerido' });
-    }
-    if (!categoria) {
-      return res.status(400).json({ message: 'La categoría es requerida' });
-    }
-    if (precio === undefined || precio === null) {
-      return res.status(400).json({ message: 'El precio es requerido' });
-    }
-    if (!marca) {
-      return res.status(400).json({ message: 'La marca es requerida' });
-    }
-    if (stock === undefined || stock === null) {
-      return res.status(400).json({ message: 'El stock es requerido' });
-    }
-
-    // Crear un nuevo item utilizando los datos sanitizados del cuerpo de la solicitud
-    const itemData = {
-      ...req.body.sanitizedInput,
-      estado: req.body.sanitizedInput.estado || 'Activo', // Estado por defecto
-      // aReservar: false,
-      // cantidadAReservar: 0,
-      cantVendidos: 0, // Inicializar con 0
-    };
-
-    const item = em.create(Item, itemData);
-    await em.flush(); // Guardar el nuevo item en la base de datos
-
-    res.status(201).json({ message: 'Item creado', data: item });
-  } catch (error: any) {
-    console.error('Error al crear el item:', error);
-    res.status(500).json({ message: 'Error al crear el item: ' + error.message });
-  }
-}
-
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
@@ -139,4 +155,4 @@ async function remove(req: Request, res: Response) {
   }
 }
 
-export { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory };
+export { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory, imagenProducto };

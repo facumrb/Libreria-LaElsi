@@ -55,12 +55,12 @@ async function login(req: Request, res: Response) {
   const { usuario, contrasenia } = req.body;
 
   // Validaciones para asegurarse de que el usuario y la contraseña fueron ingresados
-  if (!usuario) {
+  /*if (!usuario) {
     return res.status(400).json({ message: 'El usuario es requerido' });
   }
   if (!contrasenia) {
     return res.status(400).json({ message: 'La contraseña es requerida' });
-  }
+  }*/
 
   try {
     // Buscar el administrador por usuario
