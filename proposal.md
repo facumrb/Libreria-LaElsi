@@ -20,7 +20,7 @@ La librería “LaElsi” es un negocio dedicado a la venta de productos de libr
 
 ### Modelo
 
-![Modelo de dominio](/Imagenes/modeloDeDominioParaRegular.png)
+![Modelo de dominio](./Imagenes/modeloDeDominioParaRegular.png)
 
 _Nota_: Actualizar modelo y utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
