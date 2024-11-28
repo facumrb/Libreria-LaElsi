@@ -14,8 +14,8 @@ export class HeaderComponent {
     this._router.navigate(['/admin/home']);
   }
 
-  navegateEditProfile(): void {
-    this._router.navigate(['/admin/edit-profile']);
+  navegateViewProfile(): void {
+    this._router.navigate(['/admin/view-profile']);
   }
 
   navegateLogout(): void {

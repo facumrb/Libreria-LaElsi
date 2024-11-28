@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private _http = inject(HttpClient);
-  private apiUrl = 'https://api.example.com/auth';
+  private apiUrl = 'http://localhost:3000/administradores';
 
-  login(email: string, password: string): Observable<any> {
-    return this._http.post(`${this.apiUrl}/login`, { email, password });
+  login(usuario: string, password: string): Observable<any> {
+    return this._http.post(`${this.apiUrl}/login`, { usuario, password });
   }
 
   logout(): void {

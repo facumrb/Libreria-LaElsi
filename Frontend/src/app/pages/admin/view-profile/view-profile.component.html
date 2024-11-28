@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="container">
+  @if (loading) {
+  <h5>Loading...</h5>
+  } @if(!loading){
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h4>{{ admin?.nombre }}</h4>
+      <h4>{{ admin?.apellido }}</h4>
+      <h4>{{ admin?.telefono }}</h4>
+      <h4>{{ admin?.usuario }}</h4>
+      <h4>{{ admin?.email }}</h4>
+      <button type="button" class="btn btn-primary">Editar Perfil</button>
+      <button type="button" class="btn btn-primary">Volver atras</button>
+    </div>
+  </div>
+  }
+</div>
