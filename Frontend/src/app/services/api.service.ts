@@ -14,7 +14,7 @@ export class ApiService {
     return this._http.get<IApiAdmin[]>(`${this.apiUrl}/administradores`);
   }
 
-  getAdminById(id: number): Observable<IApiAdmin> {
+  getAdminById(id: string | number): Observable<IApiAdmin> {
     return this._http.get<IApiAdmin>(`${this.apiUrl}/administradores/${id}`);
   }
 }

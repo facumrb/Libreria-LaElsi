@@ -10,7 +10,10 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/administradores';
 
   login(usuario: string, password: string): Observable<any> {
-    return this._http.post(`${this.apiUrl}/login`, { usuario, password });
+    return this._http.post(`${this.apiUrl}/login`, {
+      usuario,
+      contrasenia: password,
+    });
   }
 
   logout(): void {

@@ -11,8 +11,8 @@ export const routes: Routes = [
     path: 'admin',
     children: [
       { path: 'home', component: HomeComponent /* canActivate: [adminGuard]*/ },
-      { path: 'view-profile', component: ViewProfileComponent },
-      { path: 'edit-profile', component: EditProfileComponent },
+      { path: 'view-profile/:id', component: ViewProfileComponent },
+      { path: 'edit-profile/:id', component: EditProfileComponent },
     ],
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
