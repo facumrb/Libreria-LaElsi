@@ -1,58 +1,70 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh; /* Ocupa toda la altura de la ventana */
-  margin-top: -50px; /* Ajuste para centrar un poco más arriba */
+  align-items: flex-start; /* Alineación hacia arriba como en Edit Profile */
+  min-height: 100vh; /* Altura mínima de toda la ventana */
+  margin-top: 3rem; /* Ajusta según el tamaño del header */
 }
 
 .card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra discreta */
-  border: 1px solid #dee2e6; /* Borde gris claro */
-  border-radius: 8px; /* Bordes ligeramente redondeados */
-  background-color: #ffffff; /* Fondo blanco puro */
-  width: 22rem; /* Más ancho para información legible */
+  width: 25rem; /* Mismo ancho que en Edit Profile */
+  max-width: 100%; /* Responsivo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra consistente */
+  border: 1px solid #dee2e6; /* Mismo borde */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #ffffff; /* Fondo blanco */
+  position: relative; /* Similar a Edit Profile */
 }
 
 .card-body {
-  padding: 1.5rem; /* Espaciado interno adecuado */
+  padding: 1.5rem; /* Espaciado interno */
 }
 
 .card-title {
-  font-size: 1.25rem; /* Tamaño formal para el título */
+  font-size: 1.5rem; /* Tamaño del título consistente */
   font-weight: 600;
-  color: #212529; /* Gris oscuro para buen contraste */
+  color: #212529; /* Color gris oscuro */
   border-bottom: 1px solid #dee2e6; /* Línea bajo el título */
   padding-bottom: 0.5rem;
+  text-align: center; /* Centrado */
 }
 
 .card-text {
   font-size: 1rem; /* Texto legible */
   margin-bottom: 0.75rem;
-  color: #495057; /* Gris medio para contraste */
+  color: #495057; /* Gris medio */
 }
 
 button {
-  font-size: 0.95rem; /* Tamaño adecuado para botones */
-  padding: 0.5rem 1rem;
+  font-size: 1rem; /* Mismo tamaño que Edit Profile */
+  font-weight: 600; /* Hace el texto destacado */
+  padding: 0.6rem 1.2rem; /* Espaciado adecuado */
+  border-radius: 0.3rem; /* Bordes suaves */
+  transition: all 0.3s ease; /* Transiciones suaves */
 }
 
 button.btn-outline-primary {
-  color: #0d6efd; /* Azul profesional */
-  border: 1px solid #0d6efd;
+  background-color: #28a745; /* Verde formal */
+  color: #ffffff; /* Texto blanco */
+  border: 1px solid #28a745; /* Bordes verdes */
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2); /* Sombra ligera */
 }
 
 button.btn-outline-primary:hover {
-  background-color: #0d6efd;
-  color: #fff;
+  background-color: #218838; /* Verde más oscuro */
+  border-color: #218838; /* Consistencia */
+  box-shadow: 0 4px 6px rgba(33, 136, 56, 0.3); /* Sombra más intensa */
 }
 
 button.btn-outline-secondary {
-  color: #6c757d; /* Gris profesional */
-  border: 1px solid #6c757d;
+  background-color: #dc3545; /* Rojo profesional */
+  color: #ffffff; /* Texto blanco */
+  border: 1px solid #dc3545; /* Bordes definidos */
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2); /* Sombra ligera */
 }
 
 button.btn-outline-secondary:hover {
-  background-color: #6c757d;
-  color: #fff;
+  background-color: #c82333; /* Rojo más oscuro */
+  border-color: #c82333; /* Consistencia */
+  box-shadow: 0 4px 6px rgba(200, 35, 51, 0.3); /* Sombra más intensa */
 }

@@ -1,14 +1,11 @@
 .admin-header {
   display: flex;
+  justify-content: space-between; /* Espacio entre título y botón */
+  align-items: center; /* Centra verticalmente todos los elementos */
   background-color: #f8f9fa;
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.header-logo {
-  height: 60px;
-  padding-right: 1rem; /* Ajusta el espacio entre logo y título */
-  cursor: pointer;
+  position: relative; /* Para ajustes relativos si es necesario */
 }
 
 .header-title {
@@ -18,24 +15,68 @@
   letter-spacing: 1px;
   color: #333;
   cursor: pointer;
-  display: inline-block; /* Asegura que solo ocupe el ancho del texto */
+  position: absolute; /* Permite centrarlo respecto al header */
+  left: 50%;
+  transform: translateX(-50%); /* Ajusta la posición centrada */
+  white-space: nowrap; /* Evita que el texto se corte o envuelva */
 }
 
 .header-account {
-  position: relative;
   margin-left: auto; /* Empuja el contenido a la derecha */
+  display: flex; /* Flexbox para centrar verticalmente el botón */
+  align-items: center; /* Centra verticalmente dentro del header */
+  height: 100%; /* Ocupa todo el alto del header */
 }
 
 .account-btn {
   display: flex;
-  align-items: center;
+  align-items: center; /* Centra verticalmente el contenido del botón */
   gap: 0.5rem;
+  font-size: 1.2rem; /* Tamaño de texto más grande */
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #343a40;
+  border: 2px solid #343a40;
+  padding: 0.7rem 1.5rem; /* Aumenta el padding para hacerlo más grande */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
 }
 
-.account-btn i {
-  font-size: 1.5rem;
+.account-btn:hover {
+  background-color: #495057;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.account-btn:active {
+  background-color: #212529;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.account-btn:focus {
+  outline: none;
 }
 
 .dropdown-menu {
   min-width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  color: #343a40; /* Gris oscuro */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #e9ecef; /* Fondo más claro al pasar el mouse */
+  color: #000; /* Texto negro */
+  cursor: pointer; /* Hace que parezca clickeable */
+}
+
+.dropdown-item:active {
+  background-color: #dee2e6; /* Más oscuro al hacer clic */
 }

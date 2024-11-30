@@ -6,6 +6,11 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title text-center mb-4">Perfil del Administrador</h4>
+      @if(errorMessage){
+      <div class="alert alert-danger text-center">
+        {{ errorMessage }}
+      </div>
+      }
       <p class="card-text"><strong>Nombre:</strong> {{ admin?.nombre }}</p>
       <p class="card-text"><strong>Apellido:</strong> {{ admin?.apellido }}</p>
       <p class="card-text"><strong>Teléfono:</strong> {{ admin?.telefono }}</p>
@@ -15,7 +20,7 @@
         <button
           type="button"
           class="btn btn-outline-primary"
-          (click)="editarPerfil()"
+          (click)="editarPerfil(1)"
         >
           Editar Perfil
         </button>

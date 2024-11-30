@@ -22,6 +22,7 @@ export class LoginHomeComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
   loading: boolean = false;
+  errorMessage: string = '';
   passwordVisible: boolean = false;
   showEyeIcon: boolean = false;
 
@@ -38,32 +39,40 @@ export class LoginHomeComponent {
   enviar(event: Event): boolean {
     event.preventDefault();
 
+    // Si el formulario no es válido, marcamos todos los campos como tocados para mostrar errores.
     if (this.formLoginAdmin.invalid) {
       this.formLoginAdmin.markAllAsTouched();
       return false;
-    } else {
-      this.loading = true;
-
-      const { usuario, password } = this.formLoginAdmin.value;
-
-      // Usar el servicio de autenticación para hacer login
-      this._authService.login(usuario, password).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.loading = false;
-          // Redirigir al home del administrador si el login es exitoso
-          this._router.navigate(['/admin/home']);
-        },
-        error: (error) => {
-          console.error(error);
-          this.loading = false;
-          // Mostrar mensaje de error si las credenciales son incorrectas
-          alert(error.error.message || 'Error en el inicio de sesión');
-        },
-      });
-
-      return true;
     }
+
+    // Mostramos un spinner y ocultamos mensajes de error mientras procesamos.
+    this.loading = true;
+    this.errorMessage = ''; // Limpiamos cualquier mensaje de error anterior.
+
+    const { usuario, password } = this.formLoginAdmin.value;
+
+    // Llamamos al servicio de autenticación.
+    this._authService.login(usuario, password).subscribe({
+      next: (data) => {
+        this.loading = false;
+        this._router.navigate(['/admin/home']); // Redirigimos al home del administrador.
+      },
+      error: (error) => {
+        this.loading = false;
+        // Manejo de errores según el código de estado.
+        if (error.status === 401) {
+          this.errorMessage = 'Usuario o contraseña incorrectos.';
+        } else if (error.status >= 500) {
+          this.errorMessage =
+            'Error del servidor. Por favor, intenta más tarde.';
+        } else {
+          this.errorMessage =
+            'Ocurrió un error inesperado. Inténtalo más tarde.';
+        }
+      },
+    });
+
+    return true;
   }
 
   hasErrors(field: string, typeError: string) {

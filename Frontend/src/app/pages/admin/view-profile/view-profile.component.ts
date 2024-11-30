@@ -4,6 +4,7 @@ import { IApiAdmin } from '../../../models/admin.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { IApiAccountInfo } from '../../../models/accountInfo.model';
 
 @Component({
   selector: 'app-view-profile',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ViewProfileComponent implements OnInit {
   loading: boolean = true;
-  admin?: IApiAdmin;
+  admin?: IApiAccountInfo;
+  errorMessage: string = '';
 
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
@@ -27,15 +29,21 @@ export class ViewProfileComponent implements OnInit {
   }
 
   private fetchAdmin(id: string): void {
-    this._apiService.getAdminById(id).subscribe({
-      next: (data: IApiAdmin) => {
-        console.log('Administrador cargado:', data);
+    this._apiService.getAdmin(id).subscribe({
+      next: (data: IApiAccountInfo) => {
         this.admin = data;
         this.loading = false;
       },
-      error: (err) => {
-        console.error('Error al cargar el administrador:', err);
+      error: (error) => {
         this.loading = false;
+        // Manejo de errores según el código de estado.
+        if (error.status >= 500) {
+          this.errorMessage =
+            'Error del servidor. Por favor, intenta más tarde.';
+        } else {
+          this.errorMessage =
+            'Ocurrió un error inesperado. Inténtalo más tarde.';
+        }
       },
     });
   }
@@ -44,7 +52,7 @@ export class ViewProfileComponent implements OnInit {
     this._router.navigate(['/admin/home']);
   }
 
-  editarPerfil(): void {
-    this._router.navigate(['/admin/edit-profile', this.admin?.id]);
+  editarPerfil(id: number): void {
+    this._router.navigate(['/admin/edit-profile', id]);
   }
 }
