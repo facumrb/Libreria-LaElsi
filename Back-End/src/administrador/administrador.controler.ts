@@ -15,7 +15,7 @@ function sanitizeAdministradorInput(req: Request, res: Response, next: NextFunct
     // direccion: req.body.direccion,
     // fechaDeAlta: req.body.fechaDeAlta,
     usuario: req.body.usuario,
-    contrasenia: req.body.contrasenia,
+    password: req.body.password,
     email: req.body.email,
   };
   //more checks here
@@ -41,7 +41,7 @@ async function getAccountInfo(req: Request, res: Response) {
       telefono: administrador.telefono,
       usuario: administrador.usuario,
       email: administrador.email,
-      // contrasenia: administrador.contrasenia, // Considera no enviar la contraseña en la respuesta
+      // password: administrador.password, // Considera no enviar la contraseña en la respuesta
     };
 
     res.status(200).json({ message: 'Información de cuenta obtenida', data: accountInfo });
@@ -63,19 +63,19 @@ async function findOne(req: Request, res: Response) {
 //Agregar Políticas de Contraseña y Autenticación y Tokens
 
 async function login(req: Request, res: Response) {
-  const { usuario, contrasenia } = req.body;
+  const { usuario, password } = req.body;
 
   // Validaciones para asegurarse de que el usuario y la contraseña fueron ingresados
   /*if (!usuario) {
     return res.status(400).json({ message: 'El usuario es requerido' });
   }
-  if (!contrasenia) {
+  if (!password) {
     return res.status(400).json({ message: 'La contraseña es requerida' });
   }*/
 
   try {
     // Buscar el administrador por usuario y contraseña
-    const administrador = await em.findOne(Administrador, { usuario, contrasenia });
+    const administrador = await em.findOne(Administrador, { usuario, password });
 
     if (!administrador) {
       return res.status(401).json({ message: 'Usuario o contraseña incorrecta' });
@@ -84,9 +84,9 @@ async function login(req: Request, res: Response) {
     // En el futuro generar un token de autenticación
 
     /* Comparar la contraseña proporcionada con la contraseña hasheada
-    const contraseniaValida = await bcrypt.compare(contrasenia, administrador.contrasenia);
+    const passwordValida = await bcrypt.compare(password, administrador.password);
 
-    if (!contraseniaValida) {
+    if (!passwordValida) {
       return res.status(401).json({ message: 'Usuario o contraseña incorrecta' });
     }
     */
@@ -99,7 +99,7 @@ async function login(req: Request, res: Response) {
       telefono: administrador.telefono,
       usuario: administrador.usuario,
       email: administrador.email,
-      // contrasenia: administrador.contrasenia, // Considera no enviar la contraseña en la respuesta
+      // password: administrador.password, // Considera no enviar la contraseña en la respuesta
     };
 
     // Si todo es correcto, puedes devolver algún tipo de token o mensaje
@@ -129,8 +129,8 @@ async function add(req: Request, res: Response) {
   try {
     const administrador = em.create(Administrador, req.body.sanitizedInput);
     /* Si la contraseña se está creando, hashearla
-    if (req.body.sanitizedInput.contrasenia) {
-      administrador.contrasenia = await bcrypt.hash(req.body.sanitizedInput.contrasenia, 10);
+    if (req.body.sanitizedInput.password) {
+      administrador.password = await bcrypt.hash(req.body.sanitizedInput.password, 10);
     }
     */
     await em.flush();
@@ -148,8 +148,8 @@ async function update(req: Request, res: Response) {
     em.assign(administradorToUpdate, req.body.sanitizedInput);
 
     /* Si la contraseña se está actualizando, hashearla
-    if (req.body.sanitizedInput.contrasenia) {
-      administradorToUpdate.contrasenia = await bcrypt.hash(req.body.sanitizedInput.contrasenia, 10);
+    if (req.body.sanitizedInput.password) {
+      administradorToUpdate.password = await bcrypt.hash(req.body.sanitizedInput.password, 10);
     }
     */
 

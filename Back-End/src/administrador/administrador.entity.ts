@@ -25,7 +25,7 @@ export class Administrador extends BaseEntity {
   usuario!: string;
 
   @Property({ type: 'string', nullable: false })
-  contrasenia!: string;
+  password!: string;
 
   @Property({ type: 'string', nullable: true, unique: true })
   email?: string;
