@@ -3,14 +3,14 @@ import { sanitizeAdministradorInput, findAll, findOne, add, update, remove, logi
 
 export const administradorRouter = Router();
 
+// No se usan:
 administradorRouter.get('/', findAll);
 administradorRouter.get('/:id', findOne);
 administradorRouter.post('/', sanitizeAdministradorInput, add);
-administradorRouter.delete('/:id', remove);
-administradorRouter.post('/login', login); // Ruta para el login
 
-// Rutas para obtener y actualizar la cuenta del administrador
+// Se usan:
+administradorRouter.post('/login', login); // Ruta para el login
 administradorRouter.get('/account/:id', getAccountInfo); // Obtener información de cuenta
-administradorRouter.put('/account/:id', sanitizeAdministradorInput, update); // Actualizar información de cuenta
-administradorRouter.put('/:id', sanitizeAdministradorInput, update);
+administradorRouter.delete('/:id', remove);
 administradorRouter.patch('/:id', sanitizeAdministradorInput, update);
+// administradorRouter.put('/account/:id', sanitizeAdministradorInput, updateAccount); // Actualizar información de cuenta

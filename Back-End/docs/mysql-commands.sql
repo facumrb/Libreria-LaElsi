@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS laelsi;
 
-CREATE USER IF NOT EXISTS 'administrador'@'%' IDENTIFIED BY 'administrador';
-GRANT ALL ON laelsi.* TO 'administrador'@'%';
+CREATE USER IF NOT EXISTS administrador@'%' IDENTIFIED BY 'administrador';
+GRANT ALL ON laelsi.* TO administrador@'%';
 
 -- en terminal:
 -- pnpm add -D typescript@5.1.3
