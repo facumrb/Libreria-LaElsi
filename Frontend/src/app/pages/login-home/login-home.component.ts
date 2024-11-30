@@ -1,5 +1,5 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login-home.component.html',
   styleUrl: './login-home.component.css',
 })
-export class LoginHomeComponent implements OnInit {
+export class LoginHomeComponent {
   formLoginAdmin!: FormGroup;
   private _apiService = inject(ApiService);
   private _authService = inject(AuthService);
@@ -27,18 +27,11 @@ export class LoginHomeComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.formLoginAdmin = this.formBuilder.group({
-      //email: ['', [Validators.required, Validators.email]],
       usuario: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')],
       ],
       password: ['', [Validators.required]],
-    });
-  }
-
-  ngOnInit(): void {
-    this._apiService.getAllAdmins().subscribe((admins) => {
-      console.log(admins);
     });
   }
 

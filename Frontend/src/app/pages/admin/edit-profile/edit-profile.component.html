@@ -1,1 +1,88 @@
 <app-header></app-header>
+<div class="container mt-5">
+  @if(loading){
+  <h5 class="text-center">Loading...</h5>
+  } @else{
+  <div class="card" style="width: 30rem; margin-top: 2rem">
+    <div class="card-body">
+      <h4 class="card-title text-center">Editar Perfil</h4>
+      <form
+        [formGroup]="formEditProfile"
+        class="row g-2 needs-validation"
+        novalidate
+        (ngSubmit)="guardarCambios($event)"
+      >
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            formControlName="nombre"
+            name="nombre"
+            value="{{ admin?.nombre }}"
+          />
+        </div>
+
+        <!-- Apellido -->
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            name="apellido"
+            value="{{ admin?.apellido }}"
+          />
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input
+            type="text"
+            class="form-control"
+            id="telefono"
+            name="telefono"
+            value="{{ admin?.telefono }}"
+          />
+        </div>
+
+        <!-- Usuario -->
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            id="usuario"
+            name="usuario"
+            value="{{ admin?.usuario }}"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="{{ admin?.email }}"
+          />
+        </div>
+
+        <!-- Botones -->
+        <button type="submit" class="btn btn-primary me-2">
+          Guardar Cambios
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="volverAtras()">
+          Volver Atrás
+        </button>
+      </form>
+    </div>
+  </div>
+
+  }
+</div>

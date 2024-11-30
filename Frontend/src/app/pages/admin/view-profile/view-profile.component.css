@@ -1,4 +1,58 @@
-/* .container {
+.container {
   display: flex;
   justify-content: center;
-} */
+  align-items: center;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  margin-top: -50px; /* Ajuste para centrar un poco más arriba */
+}
+
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra discreta */
+  border: 1px solid #dee2e6; /* Borde gris claro */
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+  background-color: #ffffff; /* Fondo blanco puro */
+  width: 22rem; /* Más ancho para información legible */
+}
+
+.card-body {
+  padding: 1.5rem; /* Espaciado interno adecuado */
+}
+
+.card-title {
+  font-size: 1.25rem; /* Tamaño formal para el título */
+  font-weight: 600;
+  color: #212529; /* Gris oscuro para buen contraste */
+  border-bottom: 1px solid #dee2e6; /* Línea bajo el título */
+  padding-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem; /* Texto legible */
+  margin-bottom: 0.75rem;
+  color: #495057; /* Gris medio para contraste */
+}
+
+button {
+  font-size: 0.95rem; /* Tamaño adecuado para botones */
+  padding: 0.5rem 1rem;
+}
+
+button.btn-outline-primary {
+  color: #0d6efd; /* Azul profesional */
+  border: 1px solid #0d6efd;
+}
+
+button.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+button.btn-outline-secondary {
+  color: #6c757d; /* Gris profesional */
+  border: 1px solid #6c757d;
+}
+
+button.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}

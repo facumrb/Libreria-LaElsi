@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: -50px; /* Ajuste para centrar un poco más arriba */
+}
+
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra discreta */
+  border: 1px solid #dee2e6; /* Borde gris claro */
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+  background-color: #ffffff; /* Fondo blanco puro */
+  width: 22rem; /* Más ancho para información legible */
+}
+
+.card-body {
+  padding: 1.5rem; /* Espaciado interno adecuado */
+}
+
+.card-title {
+  font-size: 1.25rem; /* Tamaño formal para el título */
+  font-weight: 600;
+  color: #212529; /* Gris oscuro para buen contraste */
+  border-bottom: 1px solid #dee2e6; /* Línea bajo el título */
+  padding-bottom: 0.5rem;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #495057; /* Gris medio */
+}
+
+.form-control {
+  font-size: 1rem;
+  border: 1px solid #ced4da; /* Borde gris claro */
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  font-size: 0.95rem; /* Tamaño adecuado para botones */
+  padding: 0.5rem 1rem;
+}
+
+button.btn-primary {
+  color: #fff;
+  background-color: #0d6efd; /* Azul profesional */
+  border: none;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+button.btn-secondary {
+  color: #6c757d; /* Gris profesional */
+  background-color: #f8f9fa;
+  border: 1px solid #6c757d;
+}
+
+button.btn-secondary:hover {
+  background-color: #e2e6ea;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
