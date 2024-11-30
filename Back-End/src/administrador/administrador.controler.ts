@@ -74,7 +74,7 @@ async function login(req: Request, res: Response) {
   }*/
 
   try {
-    // Buscar el administrador por usuario
+    // Buscar el administrador por usuario y contraseña
     const administrador = await em.findOne(Administrador, { usuario, contrasenia });
 
     if (!administrador) {
@@ -144,7 +144,7 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const administradorToUpdate = await em.findOneOrFail(Administrador, id);
+    const administradorToUpdate = await em.getReference(Administrador, id);
     em.assign(administradorToUpdate, req.body.sanitizedInput);
 
     /* Si la contraseña se está actualizando, hashearla
@@ -163,8 +163,8 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const item = em.getReference(Administrador, id);
-    await em.removeAndFlush(item);
+    const administrador = em.getReference(Administrador, id);
+    await em.removeAndFlush(administrador);
     res.status(200).send({ message: 'Administrador eliminado' });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
