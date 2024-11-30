@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Administrador } from './administrador.entity.js';
 import { orm } from '../shared/db/orm.js';
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 // Crear endpoint, verificar credencial y manejar respuesta.
 
 const em = orm.em;
@@ -30,9 +30,8 @@ function sanitizeAdministradorInput(req: Request, res: Response, next: NextFunct
 
 // Obtener información de cuenta del administrador
 async function getAccountInfo(req: Request, res: Response) {
-  const id = Number(req.params.id);
-
   try {
+    const id = Number.parseInt(req.params.id);
     const administrador = await em.findOneOrFail(Administrador, id);
     // Filtrar los datos que se enviarán al cliente
     const accountInfo = {
@@ -51,6 +50,18 @@ async function getAccountInfo(req: Request, res: Response) {
   }
 }
 
+async function findOne(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const administrador = await em.findOneOrFail(Administrador, id);
+    res.status(200).json({ message: 'Administrador encontrado', data: administrador });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+//Agregar Políticas de Contraseña y Autenticación y Tokens
+
 async function login(req: Request, res: Response) {
   const { usuario, contrasenia } = req.body;
 
@@ -63,22 +74,36 @@ async function login(req: Request, res: Response) {
   }*/
 
   try {
-    // Buscar el administrador por usuario
-    const administrador = await em.findOne(Administrador, { usuario });
+    // Buscar el administrador por usuario y contraseña
+    const administrador = await em.findOne(Administrador, { usuario, contrasenia });
 
     if (!administrador) {
       return res.status(401).json({ message: 'Usuario o contraseña incorrecta' });
     }
+    // Este enfoque es incorrecto porque no se deben almacenar contraseñas en texto plano en la base de datos. Las contraseñas deberían ser almacenadas en forma hasheada por razones de seguridad.
+    // En el futuro generar un token de autenticación
 
-    // Comparar la contraseña proporcionada con la contraseña hasheada
+    /* Comparar la contraseña proporcionada con la contraseña hasheada
     const contraseniaValida = await bcrypt.compare(contrasenia, administrador.contrasenia);
 
     if (!contraseniaValida) {
       return res.status(401).json({ message: 'Usuario o contraseña incorrecta' });
     }
+    */
+
+    const accountInfo = {
+      // foto: administrador.foto,
+      id: administrador.id, // Obtengo el id de Administrador porque luego es el que uso para acceder al administrador mediante otras funciones
+      nombre: administrador.nombre,
+      apellido: administrador.apellido,
+      telefono: administrador.telefono,
+      usuario: administrador.usuario,
+      email: administrador.email,
+      // contrasenia: administrador.contrasenia, // Considera no enviar la contraseña en la respuesta
+    };
 
     // Si todo es correcto, puedes devolver algún tipo de token o mensaje
-    res.status(200).json({ message: 'Inicio de sesión exitoso', data: administrador });
+    res.status(200).json({ message: 'Inicio de sesión exitoso', data: accountInfo });
   } catch (error: any) {
     console.error(error);
     res.status(500).json({ message: error.message });
@@ -100,22 +125,14 @@ async function findAll(req: Request, res: Response) {
   }
 }
 
-async function findOne(req: Request, res: Response) {
-  try {
-    const id = Number.parseInt(req.params.id);
-    const administrador = await em.findOneOrFail(Administrador, id);
-    res.status(200).json({ message: 'Administrador encontrado', data: administrador });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-}
-
-//Agregar Políticas de Contraseña y Autenticación y Tokens
-
 async function add(req: Request, res: Response) {
   try {
-    //
     const administrador = em.create(Administrador, req.body.sanitizedInput);
+    /* Si la contraseña se está creando, hashearla
+    if (req.body.sanitizedInput.contrasenia) {
+      administrador.contrasenia = await bcrypt.hash(req.body.sanitizedInput.contrasenia, 10);
+    }
+    */
     await em.flush();
     res.status(201).json({ message: 'Administrador creado', data: administrador });
   } catch (error: any) {
@@ -125,19 +142,19 @@ async function add(req: Request, res: Response) {
 
 // Actualizar información de cuenta del administrador
 async function update(req: Request, res: Response) {
-  const id = Number(req.params.id);
-
   try {
-    const administradorToUpdate = await em.findOneOrFail(Administrador, id);
+    const id = Number.parseInt(req.params.id);
+    const administradorToUpdate = await em.getReference(Administrador, id);
     em.assign(administradorToUpdate, req.body.sanitizedInput);
 
-    // Si la contraseña se está actualizando, hashearla
+    /* Si la contraseña se está actualizando, hashearla
     if (req.body.sanitizedInput.contrasenia) {
       administradorToUpdate.contrasenia = await bcrypt.hash(req.body.sanitizedInput.contrasenia, 10);
     }
+    */
 
     await em.flush();
-    res.status(200).json({ message: 'Información de cuenta actualizada', data: administradorToUpdate });
+    res.status(200).json({ message: 'Información de cuenta actualizada' });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -146,8 +163,8 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const item = em.getReference(Administrador, id);
-    await em.removeAndFlush(item);
+    const administrador = em.getReference(Administrador, id);
+    await em.removeAndFlush(administrador);
     res.status(200).send({ message: 'Administrador eliminado' });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
