@@ -1,8 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { IApiAdmin } from '../../../models/admin.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../../../services/api.service';
+import { ApiAdministradorService } from '../../../services/api-administrador.service';
 import { CommonModule } from '@angular/common';
 import { IApiAccountInfo } from '../../../models/accountInfo.model';
 
@@ -19,7 +18,7 @@ export class ViewProfileComponent implements OnInit {
 
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
-  private _apiService = inject(ApiService);
+  private _apiService = inject(ApiAdministradorService);
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
@@ -28,7 +27,7 @@ export class ViewProfileComponent implements OnInit {
     });
   }
 
-  private fetchAdmin(id: string): void {
+  private fetchAdmin(id: number): void {
     this._apiService.getAdmin(id).subscribe({
       next: (data: IApiAccountInfo) => {
         this.admin = data;
@@ -52,7 +51,7 @@ export class ViewProfileComponent implements OnInit {
     this._router.navigate(['/admin/home']);
   }
 
-  editarPerfil(id: number): void {
-    this._router.navigate(['/admin/edit-profile', id]);
+  editarPerfil(): void {
+    this._router.navigate(['/admin/edit-profile', this.admin?.id]);
   }
 }

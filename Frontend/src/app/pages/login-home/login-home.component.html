@@ -82,29 +82,3 @@
     </div>
   </div>
 </div>
-
-<!-- 
-// Campo de correo electrónico 
-<div class="mb-2">
-  <label for="email" class="form-label">Correo Electrónico</label>
-  <input
-    type="email"
-    class="form-control"
-    id="email"
-    placeholder="name@gmail.com"
-    formControlName="email"
-    [ngClass]="{
-      'is-invalid':
-        hasErrors('email', 'required') || hasErrors('email', 'email')
-    }"
-  />
-// Contenedor de mensajes de error 
-  <div class="error-container">
-    @if (hasErrors('email', 'required')) {
-    <div class="text-danger">El correo es obligatorio.</div>
-    } @if (hasErrors('email', 'email')) {
-    <div class="text-danger">El formato del correo es inválido.</div>
-    }
-  </div>
-</div>
--->

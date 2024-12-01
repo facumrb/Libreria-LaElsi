@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { IApiAdmin } from '../../../models/admin.model';
 import {
   FormBuilder,
   FormGroup,
@@ -8,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../../../services/api.service';
+import { ApiAdministradorService } from '../../../services/api-administrador.service';
 import { CommonModule } from '@angular/common';
 import { IApiAccountInfo } from '../../../models/accountInfo.model';
 
@@ -26,7 +25,7 @@ export class EditProfileComponent implements OnInit {
 
   private _route = inject(ActivatedRoute);
   private _router = inject(Router);
-  private _apiService = inject(ApiService);
+  private _apiService = inject(ApiAdministradorService);
 
   constructor(private formBuilder: FormBuilder) {
     this.formEditProfile = this.formBuilder.group({
@@ -62,7 +61,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   // Obtener los detalles del administrador desde la API
-  private fetchAdmin(id: string): void {
+  private fetchAdmin(id: number): void {
     this._apiService.getAdmin(id).subscribe({
       next: (data: IApiAccountInfo) => {
         this.admin = data;
@@ -93,22 +92,24 @@ export class EditProfileComponent implements OnInit {
   guardarCambios(event: Event): void {
     event.preventDefault();
     if (this.admin) {
-      this._apiService.updateAdmin(this.admin.id, this.admin).subscribe({
+      // Actualizamos los datos con los valores del formulario
+      const updatedAdmin = { ...this.admin, ...this.formEditProfile.value };
+
+      this._apiService.updateAdmin(this.admin.id, updatedAdmin).subscribe({
         next: () => {
           alert('Perfil actualizado con éxito');
-          this._router.navigate(['admin/view-profile', this.admin?.id]); // Redirige a la vista del perfil actualizado
+          this._router.navigate(['admin/view-profile', this.admin?.id]);
         },
-        error: (err) => {
-          console.error('Error al guardar los cambios:', err);
-          alert('Hubo un problema al guardar los cambios. Intenta nuevamente.');
+        error: (error) => {
+          this.errorMessage = 'Error del servidor.';
         },
       });
     }
   }
 
   // Método para volver atrás sin guardar
-  volverAtras(id: number): void {
-    this._router.navigate(['admin/view-profile', id]);
+  volverAtras(): void {
+    this._router.navigate(['admin/view-profile', this.admin?.id]);
   }
 
   hasErrors(field: string, typeError: string) {

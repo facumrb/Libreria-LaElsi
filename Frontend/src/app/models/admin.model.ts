@@ -4,6 +4,6 @@ export interface IApiAdmin {
   apellido: string;
   telefono: string;
   usuario: string;
-  contrasenia: string;
+  password: string;
   email: string;
 }

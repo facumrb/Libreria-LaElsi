@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,18 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './side-bar.component.css',
 })
 export class SideBarComponent {
-  listarProductos() {
-    console.log('Mostrando lista de productos...');
-    // Aquí llamas al componente o servicio que muestra la lista de productos
+  private _router = inject(Router);
+
+  Productos(): void {
+    this._router.navigate(['/admin/items']);
   }
 
-  listarCategorias() {
-    console.log('Mostrando lista de categorías...');
-    // Aquí llamas al componente o servicio que muestra la lista de categorías
+  Categorias(): void {
+    this._router.navigate(['/admin/categorias']);
   }
 
-  listarUsuarios() {
-    console.log('Mostrando lista de usuarios...');
-    // Aquí llamas al componente o servicio que muestra la lista de usuarios
-  }
+  Usuarios() {}
 }

@@ -1,0 +1,138 @@
+<div class="categorias-container">
+  <h1>Gestión de Categorías</h1>
+  <div class="search-container">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Buscar categorías..."
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+    />
+  </div>
+  <table class="table-light">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (categoria of categorias; track $index) {
+      <tr>
+        <td>{{ categoria.nombre }}</td>
+        <td>{{ categoria.descripcion }}</td>
+        <td>{{ categoria.estado }}</td>
+        <td class="actions-column">
+          <button class="btn btn-edit" (click)="openModal('edit', categoria)">
+            Editar
+          </button>
+          <button
+            class="btn btn-delete"
+            (click)="deleteCategoria(categoria.id)"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <div class="btn-add-container">
+    <button class="btn btn-add" (click)="openModal('add')">
+      Agregar Categoría
+    </button>
+  </div>
+</div>
+
+<!-- VENTANA MODAL -->
+<div class="modal" [class.show]="isModalOpen" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <h2>
+      {{ modalMode === "add" ? "Agregar Categoría" : "Editar Categoría" }}
+    </h2>
+    @if(errorMessage){
+    <div class="alert alert-danger text-center">
+      {{ errorMessage }}
+    </div>
+    }
+    <form [formGroup]="formCategory" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          formControlName="nombre"
+          name="nombre"
+          [ngClass]="{
+            'is-invalid':
+              hasErrors('nombre', 'required') || hasErrors('nombre', 'pattern')
+          }"
+        />
+        <!-- Contenedor de mensajes de error -->
+        <div class="error-container">
+          @if (hasErrors('nombre', 'required')) {
+          <div class="text-danger">El nombre es obligatorio.</div>
+          } @if (hasErrors('nombre', 'pattern')) {
+          <div class="text-danger">El formato del nombre es inválido.</div>
+          }
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="descripcion"
+          formControlName="descripcion"
+          [ngClass]="{
+            'is-invalid':
+              hasErrors('descripcion', 'required') ||
+              hasErrors('descripcion', 'pattern')
+          }"
+        ></textarea>
+        <!-- Contenedor de mensajes de error -->
+        <div class="error-container">
+          @if (hasErrors('descripcion', 'required')) {
+          <div class="text-danger">La descripción es obligatoria.</div>
+          } @if (hasErrors('descripcion', 'pattern')) {
+          <div class="text-danger">
+            El formato de la descripción es inválido.
+          </div>
+          }
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="estado" class="form-label">Estado</label>
+        <select
+          id="estado"
+          class="form-control"
+          formControlName="estado"
+          [ngClass]="{ 'is-invalid': hasErrors('estado', 'required') }"
+        >
+          <option value="" disabled selected>Seleccione un estado</option>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+        <div class="error-container">
+          @if (hasErrors('estado', 'required')){
+          <div class="text-danger">Seleccionar un estado es obligatorio.</div>
+          }
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button
+          type="submit"
+          class="btn btn-submit"
+          [disabled]="!formCategory.valid"
+        >
+          Guardar
+        </button>
+        <button type="button" class="btn btn-cancel" (click)="closeModal()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

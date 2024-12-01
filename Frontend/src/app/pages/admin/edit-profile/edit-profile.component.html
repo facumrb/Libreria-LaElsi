@@ -5,6 +5,11 @@
   } @else {
   <div class="card">
     <div class="card-body">
+      @if(errorMessage){
+      <div class="alert alert-danger text-center">
+        {{ errorMessage }}
+      </div>
+      }
       <form
         [formGroup]="formEditProfile"
         class="needs-validation"
@@ -21,7 +26,6 @@
               id="nombre"
               formControlName="nombre"
               name="nombre"
-              formControlName="nombre"
               [ngClass]="{
                 'is-invalid':
                   hasErrors('nombre', 'required') ||
@@ -149,7 +153,7 @@
           <button
             type="button"
             class="btn btn-secondary"
-            (click)="volverAtras(1)"
+            (click)="volverAtras()"
           >
             Cancelar
           </button>

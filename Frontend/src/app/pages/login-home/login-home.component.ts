@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
+import { ApiAdministradorService } from '../../services/api-administrador.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginHomeComponent {
   formLoginAdmin!: FormGroup;
-  private _apiService = inject(ApiService);
+  private _apiService = inject(ApiAdministradorService);
   private _authService = inject(AuthService);
   private _router = inject(Router);
   loading: boolean = false;
