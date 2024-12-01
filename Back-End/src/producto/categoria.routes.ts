@@ -6,7 +6,7 @@ export const categoriaRouter = Router();
 categoriaRouter.get('/', findAll);
 categoriaRouter.get('/:id', findOne);
 categoriaRouter.post('/', add);
-categoriaRouter.put('/:id', update);
+categoriaRouter.patch('/:id', update);
 categoriaRouter.delete('/:id', remove);
 
 // Ruta para buscar categorías por nombre o descripción

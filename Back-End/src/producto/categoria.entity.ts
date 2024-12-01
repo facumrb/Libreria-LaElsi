@@ -4,17 +4,17 @@ import { Item } from './item.entity.js';
 
 @Entity()
 export class Categoria extends BaseEntity {
-  @Property({ nullable: false, unique: true })
+  @Property({ nullable: false, unique: true }) // debe ser unique
   nombre!: string;
 
-  @Property({ nullable: true })
+  @Property({ nullable: false })
   descripcion!: string;
 
   @Property({ nullable: false })
-  estado!: string; // Activo o Inactivo
+  estado!: string; // Activo o Inactivo -- 'Activo' | 'Inactivo'
 
   @OneToMany(() => Item, (item) => item.categoria, {
     cascade: [Cascade.ALL],
   })
-  Items = new Collection<Item>(this);
+  items = new Collection<Item>(this);
 }

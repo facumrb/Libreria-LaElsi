@@ -9,6 +9,7 @@ function sanitizeCategoriaInput(req: Request, res: Response, next: NextFunction)
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     estado: req.body.estado,
+    items: req.body.items,
   };
   //more checks here
 
@@ -51,7 +52,7 @@ async function findOne(req: Request, res: Response) {
     res.status(500).json({ message: error.message });
   }
 }
-
+/*
 async function add(req: Request, res: Response) {
   try {
     const { nombre, descripcion } = req.body.sanitizedInput;
@@ -75,6 +76,17 @@ async function add(req: Request, res: Response) {
     res.status(500).json({ message: 'Error al crear la categoría' });
   }
 }
+*/
+
+async function add(req: Request, res: Response) {
+  try {
+    const categoria = em.create(Categoria, req.body);
+    await em.flush();
+    res.status(201).json({ message: 'Categoría creada', data: categoria });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+} // prueba
 
 async function update(req: Request, res: Response) {
   try {

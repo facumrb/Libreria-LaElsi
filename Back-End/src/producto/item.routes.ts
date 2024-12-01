@@ -3,16 +3,20 @@ import { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsBy
 
 export const itemRouter = Router();
 
+// No se usan:
 itemRouter.get('/', findAll);
-itemRouter.get('/:id', findOne);
-
-itemRouter.post('/', sanitizeItemInput, add);
-// itemRouter.post('/', imagenProducto.single('foto'), sanitizeItemInput, add);
-
 itemRouter.put('/:id', sanitizeItemInput, update);
+
+// Se usan:
+itemRouter.post('/', sanitizeItemInput, add);
 itemRouter.patch('/:id', sanitizeItemInput, update);
 itemRouter.delete('/:id', remove);
-
-// Nuevas rutas para búsqueda y filtrado
+// itemRouter.post('/', imagenProducto.single('foto'), sanitizeItemInput, add); ???
 itemRouter.get('/search', searchItemsByText); // Buscar items por texto
 itemRouter.get('/category/:categoryId', findItemsByCategory); // Obtener items por categoría
+itemRouter.get('/:id', findOne);
+/*itemRouter.post('/imagenesProductos/single', imagenProducto.single('fotoProducto'), (req, res) => {
+  console.log(req.file);
+  res.send('Terminado');
+});
+*/

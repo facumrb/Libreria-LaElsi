@@ -7,8 +7,8 @@ export class Item extends BaseEntity {
   @Property({ nullable: false, unique: true })
   nombre!: string;
 
-  @Property({ nullable: true })
-  foto?: string;
+  // @Property({ nullable: true })
+  // foto?: string;
 
   @Property({ nullable: true })
   descripcion?: string;
@@ -20,7 +20,7 @@ export class Item extends BaseEntity {
   marca!: string;
 
   @Property({ nullable: false })
-  cantVendidos!: number;
+  cant_vendidos!: number;
 
   @Property({ nullable: false })
   estado!: string; // Activo o Inactivo
