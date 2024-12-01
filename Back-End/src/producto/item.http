@@ -1,0 +1,91 @@
+### GET all items
+http://localhost:3000/api/items
+
+### POST a item
+# @name createItem
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{
+    "nombre": "Pista de Autos",
+    "descripcion": "Pista para autos con curvas y elevaciones.",
+    "precio": 29.99,
+    "marca": "TrackMasters",
+    "cantVendidos": 250,
+    "estado": "Activo",
+    "stock": 100,
+    "categoria": 1
+    // foto? pista_autos.jpg
+}
+
+### ID
+@id = {{createItem.response.body.data.id}}
+
+### GET one item
+http://localhost:3000/api/items/{{id}}
+
+### PUT a item
+PUT http://localhost:3000/api/items/{{id}}
+Content-Type: application/json
+
+{
+    "nombre": "Tijera",
+    // foto?
+    "descripcion": "",
+    "precio": 25,
+    "marca": "",
+    "cantVendidos": 100,
+    "estado": 10,
+    "stock": ,
+    "categoria": ???
+}
+
+### POST a item
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{
+    "nombre": "Tijera",
+    // foto?
+    "descripcion": "",
+    "precio": 25,
+    "marca": "",
+    "cantVendidos": 100,
+    "estado": 10,
+    "stock": ,
+    "categoria": ???
+}
+
+### POST a item
+# @name createItemToDelete
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{
+    "nombre": "Tijera",
+    // foto?
+    "descripcion": "",
+    "precio": 25,
+    "marca": "",
+    "cantVendidos": 100,
+    "estado": 10,
+    "stock": ,
+    "categoria": ???
+}
+### DELETE a item
+@idToDelete = {{createItemToDelete.response.body.data.id}}
+DELETE http://localhost:3000/api/characters/{{idToDelete}}
+
+### PATCH a item
+PATCH http://localhost:3000/api/items/{{idToDelete}}
+Content-Type: application/json
+
+{
+    // foto?
+    "precio": 25,
+    "cantVendidos": 100,
+    "stock": 20
+}
+
+### DELETE a item
+DELETE http://localhost:3000/api/items/{{idToDelete}}

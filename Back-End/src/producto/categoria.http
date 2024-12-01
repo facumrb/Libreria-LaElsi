@@ -1,0 +1,63 @@
+### GET ALL
+GET http://localhost:3000/api/items/categorias
+
+### POST
+# @name createCategoria
+POST http://localhost:3000/api/items/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Juguetería",
+  "descripcion": "Amplia variedad de juguetes y juegos educativos para niños de todas las edades.",
+  "estado": "Inactivo"
+}
+
+### ID
+@id = {{createCategoria.response.body.data.id}}
+
+### GET ONE
+GET http://localhost:3000/api/items/categorias/{{id}}
+
+
+### PATCH
+PATCH  http://localhost:3000/api/items/categorias/{{id}}
+Content-Type: application/json
+
+{
+    "estado": "Activo"
+}
+
+### POST2
+POST http://localhost:3000/api/items/categorias
+Content-Type: application/json
+
+{
+    "nombre": "Librería",
+    "descripcion": "Artículos de librería, materiales de estudio y artículos de papelería para todas las necesidades.",
+    "estado": "Activo"
+}
+
+### POST3
+POST http://localhost:3000/api/items/categorias
+Content-Type: application/json
+
+{
+    "nombre": "Cotillón",
+    "descripcion": "Artículos festivos y decorativos para todo tipo de celebraciones, desde cumpleaños hasta eventos temáticos.",
+    "estado": "Activo"
+}
+
+### POST Categoría TO DELETE
+# @name createCategoriaToDelete
+POST http://localhost:3000/api/items/categorias
+Content-Type: application/json
+
+{
+    "nombre": "Cotillón",
+    "descripcion": "Artículos festivos y decorativos para todo tipo de celebraciones, desde cumpleaños hasta eventos temáticos.",
+    "estado": "Activo"
+}
+
+### DELETE
+@idToDelete = {{createCategoriaToDelete.response.body.data.id}}
+DELETE http://localhost:3000/api/items/categorias/{{idToDelete}}

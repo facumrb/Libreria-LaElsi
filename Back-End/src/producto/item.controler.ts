@@ -3,6 +3,7 @@ import { Item } from './item.entity.js';
 import { orm } from '../shared/db/orm.js';
 import multer from 'multer';
 import path from 'path';
+import fs from 'node:fs';
 
 const em = orm.em;
 
@@ -10,11 +11,11 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
   req.body.sanitizedInput = {
     nombre: req.body.nombre,
     categoria: req.body.categoria,
-    foto: req.body.foto,
+    // foto: req.body.foto,
     decripcion: req.body.descripcion,
     precio: req.body.precio,
     marca: req.body.marca,
-    cantVendidos: req.body.cantVendidos,
+    cant_vendidos: req.body.cant_vendidos,
     estado: req.body.estado,
     stock: req.body.stock,
     //fechaDeAlta: req.body.fechaDeAlta,
@@ -42,13 +43,19 @@ const storage = multer.diskStorage({
   },
 });
 
+/*
+function guardaImagen(file) {
+  const;
+}
+*/
+
 const imagenProducto = multer({ storage });
 
 // Función para agregar un nuevo item con la imagen
 async function add(req: Request, res: Response) {
   try {
     const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
-    const foto = req.file?.path; // Obtener la ruta de la imagen cargada
+    //const foto = req.file?.path; // Obtener la ruta de la imagen cargada
 
     // Validaciones para asegurarse de que los atributos no sean nulos
     if (!nombre) {
@@ -70,9 +77,9 @@ async function add(req: Request, res: Response) {
     // Crear un nuevo item utilizando los datos sanitizados del cuerpo de la solicitud
     const itemData = {
       ...req.body.sanitizedInput,
-      foto, // Asignar la ruta de la imagen al item
+      // foto, // Asignar la ruta de la imagen al item
       estado: req.body.sanitizedInput.estado || 'Activo',
-      cantVendidos: 0, // Inicializar con 0
+      cant_vendidos: 0, // Inicializar con 0
       // aReservar: false,
       // cantidadAReservar: 0,
     };
