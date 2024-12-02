@@ -110,10 +110,10 @@ async function searchItemsByText(req: Request, res: Response) {
 
 // Función para obtener items por categoría
 async function findItemsByCategory(req: Request, res: Response) {
-  const categoryId = Number(req.params.categoryId); // Obtener ID de categoría
+  const categoriaId = Number(req.params.id); // Obtener ID de categoría
 
   try {
-    const items = await em.find(Item, { categoria: categoryId }); // Buscar por categoría
+    const items = await em.find(Item, { categoria: categoriaId }); // Buscar por categoría
     res.status(200).json({ message: 'Items encontrados en la categoría', data: items });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -122,7 +122,7 @@ async function findItemsByCategory(req: Request, res: Response) {
 
 async function findAll(req: Request, res: Response) {
   try {
-    const items = await em.find(Item, {}, { populate: ['categoria'] });
+    const items = await em.find(Item, {}); // , { populate: ['categoria'] }
     res.status(200).json({ message: 'Todos los Items fueron encontrados', data: items });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -132,7 +132,7 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const item = await em.findOneOrFail(Item, { id }, { populate: ['categoria'] });
+    const item = await em.findOneOrFail(Item, { id }); // , { populate: ['categoria'] }
     res.status(200).json({ message: 'Item encontrado', data: item });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -142,7 +142,7 @@ async function findOne(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const itemAActualizar = await em.findOneOrFail(Item, { id });
+    const itemAActualizar = await em.getReference(Item, id);
     em.assign(itemAActualizar, req.body.sanitizedInput);
     await em.flush();
     res.status(200).json({ message: 'Item actualizado', data: itemAActualizar });

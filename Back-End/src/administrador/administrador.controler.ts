@@ -16,7 +16,7 @@ function sanitizeAdministradorInput(req: Request, res: Response, next: NextFunct
     // fechaDeAlta: req.body.fechaDeAlta,
     usuario: req.body.usuario,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
   };
   //more checks here
 
@@ -41,7 +41,7 @@ async function getAccountInfo(req: Request, res: Response) {
       apellido: administrador.apellido,
       telefono: administrador.telefono,
       usuario: administrador.usuario,
-      email: administrador.email
+      email: administrador.email,
       // password: administrador.password, // Considera no enviar la contraseña en la respuesta
     };
 
@@ -76,7 +76,7 @@ async function login(req: Request, res: Response) {
 
   try {
     // Buscar el administrador por usuario y contraseña
-    const administrador = await em.findOne(Administrador, { usuario, password });
+    const administrador = await em.findOneOrFail(Administrador, { usuario, password });
 
     if (!administrador) {
       return res.status(401).json({ message: 'Usuario o contraseña incorrecta' });
@@ -99,7 +99,7 @@ async function login(req: Request, res: Response) {
       apellido: administrador.apellido,
       telefono: administrador.telefono,
       usuario: administrador.usuario,
-      email: administrador.email
+      email: administrador.email,
       // password: administrador.password, // Considera no enviar la contraseña en la respuesta
     };
 

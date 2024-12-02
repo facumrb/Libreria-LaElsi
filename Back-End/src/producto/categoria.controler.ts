@@ -9,7 +9,7 @@ function sanitizeCategoriaInput(req: Request, res: Response, next: NextFunction)
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     estado: req.body.estado,
-    items: req.body.items
+    items: req.body.items,
   };
   //more checks here
 
@@ -25,33 +25,19 @@ async function searchCategorias(req: Request, res: Response) {
   const { query } = req.query; // Obtener el texto de búsqueda
 
   try {
-    const categorias = await em.find(Categoria, {
-      $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }]
-    });
+    const categorias = await em.find(
+      Categoria,
+      {
+        $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }],
+      },
+      { populate: ['items'] }
+    );
     res.status(200).json({ message: 'Categorías encontradas', data: categorias });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 }
 
-async function findAll(req: Request, res: Response) {
-  try {
-    const categorias = await em.find(Categoria, {});
-    res.status(200).json({ message: 'Todas las Categorías fueron encontradas', data: categorias });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-}
-
-async function findOne(req: Request, res: Response) {
-  try {
-    const id = Number.parseInt(req.params.id);
-    const categoria = await em.findOneOrFail(Categoria, { id });
-    res.status(200).json({ message: 'Categoría encontrada', data: categoria });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-}
 /*
 async function add(req: Request, res: Response) {
   try {
@@ -88,10 +74,29 @@ async function add(req: Request, res: Response) {
   }
 }
 
+async function findAll(req: Request, res: Response) {
+  try {
+    const categorias = await em.find(Categoria, {}, { populate: ['items'] });
+    res.status(200).json({ message: 'Todas las Categorías fueron encontradas', data: categorias });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function findOne(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const categoria = await em.findOneOrFail(Categoria, { id }, { populate: ['items'] });
+    res.status(200).json({ message: 'Categoría encontrada', data: categoria });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const categoria = await em.findOneOrFail(Categoria, { id });
+    const categoria = await em.getReference(Categoria, id);
     em.assign(categoria, req.body.sanitizedInput);
     await em.flush();
     res.status(200).json({ message: 'Categoría actualizada', data: categoria });

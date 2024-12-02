@@ -1,0 +1,16 @@
+### GET ALL
+GET http://localhost:3000/api/administradores
+
+### POST
+# @name createCategoria
+POST http://localhost:3000/api/administradores
+Content-Type: application/json
+
+{
+  "nombre": "Cesar",
+  "apellido": "Ramírez",
+  "telefono": "3415076254",
+  "usuario": "cesar_ramirez",
+  "password": "9deJulio2325",
+  "email": "tintapapelymusica@gmail.com",
+}

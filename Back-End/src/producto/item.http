@@ -14,8 +14,7 @@ Content-Type: application/json
     "cant_vendidos": 250,
     "estado": "Activo",
     "stock": 100,
-    "categoria": {      
-    }
+    "categoria": 1
     // foto? pista_autos.jpg
 }
 
@@ -25,20 +24,15 @@ Content-Type: application/json
 ### GET one item
 http://localhost:3000/api/items/{{id}}
 
-### PUT a item
-PUT http://localhost:3000/api/items/{{id}}
+### PATCH a item
+PATCH http://localhost:3000/api/items/{{id}}
 Content-Type: application/json
 
 {
-    "nombre": "Tijera",
     // foto?
-    "descripcion": "",
     "precio": 25,
-    "marca": "",
-    "cantVendidos": 100,
-    "estado": 10,
-    "stock": ,
-    "categoria": ???
+    "cantVendidos": 300,
+    "stock": 50
 }
 
 ### POST a item
@@ -67,11 +61,11 @@ Content-Type: application/json
     // foto?
     "descripcion": "",
     "precio": 25,
-    "marca": "",
+    "marca": "Modul",
     "cantVendidos": 100,
     "estado": 10,
-    "stock": ,
-    "categoria": ???
+    "stock": 90,
+    "categoria": 2
 }
 ### DELETE a item
 @idToDelete = {{createItemToDelete.response.body.data.id}}

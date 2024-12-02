@@ -5,7 +5,6 @@ export const itemRouter = Router();
 
 // No se usan:
 itemRouter.get('/', findAll);
-itemRouter.put('/:id', sanitizeItemInput, update);
 
 // Se usan:
 itemRouter.post('/', sanitizeItemInput, add);
