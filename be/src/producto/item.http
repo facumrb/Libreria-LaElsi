@@ -40,15 +40,15 @@ POST http://localhost:3000/api/items
 Content-Type: application/json
 
 {
-    "nombre": "Tijera",
+    "nombre": "Sombrero",
     // foto?
-    "descripcion": "",
+    "descripcion": "Sombrero de mago",
     "precio": 25,
-    "marca": "",
-    "cantVendidos": 100,
-    "estado": 10,
-    "stock": ,
-    "categoria": ???
+    "marca": "Magic",
+    "cantVendidos": 10,
+    "estado": "Activo",
+    "stock": 45,
+    "categoria": 8
 }
 
 ### POST a item

@@ -24,7 +24,7 @@ PATCH  http://localhost:3000/api/categorias/{{id}}
 Content-Type: application/json
 
 {
-    "estado": "Activo"
+    "estado": "Inactivo"
 }
 
 ### POST2
@@ -63,4 +63,4 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/categorias/{{idToDelete}}
 
 ### DELETE WITH MANUAL ID
-DELETE http://localhost:3000/api/categorias/6
+DELETE http://localhost:3000/api/categorias/8

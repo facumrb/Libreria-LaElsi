@@ -108,7 +108,7 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const categoria = em.getReference(Categoria, id);
+    const categoria = await em.findOneOrFail(Categoria, { id }, { populate: ['items'] });
     await em.removeAndFlush(categoria);
     res.status(200).send({ message: 'Categoría eliminada' });
   } catch (error: any) {
