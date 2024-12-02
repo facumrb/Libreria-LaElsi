@@ -8,7 +8,7 @@ import { IApiCategoria } from '../models/categoria.model';
 })
 export class ApiCategoriaService {
   private _http = inject(HttpClient);
-  private apiUrl: string = 'http://localhost:3000/api/items/categorias';
+  private apiUrl: string = 'http://localhost:3000/api/categorias';
 
   getAllCategorias(): Observable<IApiCategoria[]> {
     return this._http

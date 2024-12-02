@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 //antes de las rutas y middlewares de negocio
 
-app.use('/api/items/categorias', categoriaRouter);
+app.use('/api/categorias', categoriaRouter);
 app.use('/api/items', itemRouter);
 app.use('/api/administradores', administradorRouter);
 

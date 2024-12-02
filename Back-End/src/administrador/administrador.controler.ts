@@ -16,7 +16,7 @@ function sanitizeAdministradorInput(req: Request, res: Response, next: NextFunct
     // fechaDeAlta: req.body.fechaDeAlta,
     usuario: req.body.usuario,
     password: req.body.password,
-    email: req.body.email,
+    email: req.body.email
   };
   //more checks here
 
@@ -36,11 +36,12 @@ async function getAccountInfo(req: Request, res: Response) {
     // Filtrar los datos que se enviarán al cliente
     const accountInfo = {
       // foto: administrador.foto,
+      id: administrador.id,
       nombre: administrador.nombre,
       apellido: administrador.apellido,
       telefono: administrador.telefono,
       usuario: administrador.usuario,
-      email: administrador.email,
+      email: administrador.email
       // password: administrador.password, // Considera no enviar la contraseña en la respuesta
     };
 
@@ -98,7 +99,7 @@ async function login(req: Request, res: Response) {
       apellido: administrador.apellido,
       telefono: administrador.telefono,
       usuario: administrador.usuario,
-      email: administrador.email,
+      email: administrador.email
       // password: administrador.password, // Considera no enviar la contraseña en la respuesta
     };
 

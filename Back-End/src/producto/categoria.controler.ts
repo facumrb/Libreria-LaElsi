@@ -9,7 +9,7 @@ function sanitizeCategoriaInput(req: Request, res: Response, next: NextFunction)
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     estado: req.body.estado,
-    items: req.body.items,
+    items: req.body.items
   };
   //more checks here
 
@@ -26,7 +26,7 @@ async function searchCategorias(req: Request, res: Response) {
 
   try {
     const categorias = await em.find(Categoria, {
-      $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }],
+      $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }]
     });
     res.status(200).json({ message: 'Categorías encontradas', data: categorias });
   } catch (error: any) {
@@ -80,13 +80,13 @@ async function add(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
   try {
-    const categoria = em.create(Categoria, req.body);
+    const categoria = em.create(Categoria, req.body.sanitizedInput);
     await em.flush();
     res.status(201).json({ message: 'Categoría creada', data: categoria });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Error al crear la categoría' });
   }
-} // prueba
+}
 
 async function update(req: Request, res: Response) {
   try {

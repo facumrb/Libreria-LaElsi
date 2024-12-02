@@ -1,9 +1,9 @@
 ### GET ALL
-GET http://localhost:3000/api/items/categorias
+GET http://localhost:3000/api/categorias
 
 ### POST
 # @name createCategoria
-POST http://localhost:3000/api/items/categorias
+POST http://localhost:3000/api/categorias
 Content-Type: application/json
 
 {
@@ -16,11 +16,11 @@ Content-Type: application/json
 @id = {{createCategoria.response.body.data.id}}
 
 ### GET ONE
-GET http://localhost:3000/api/items/categorias/{{id}}
+GET http://localhost:3000/api/categorias/{{id}}
 
 
 ### PATCH
-PATCH  http://localhost:3000/api/items/categorias/{{id}}
+PATCH  http://localhost:3000/api/categorias/{{id}}
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ### POST2
-POST http://localhost:3000/api/items/categorias
+POST http://localhost:3000/api/categorias
 Content-Type: application/json
 
 {
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ### POST3
-POST http://localhost:3000/api/items/categorias
+POST http://localhost:3000/api/categorias
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ### POST Categoría TO DELETE
 # @name createCategoriaToDelete
-POST http://localhost:3000/api/items/categorias
+POST http://localhost:3000/api/categorias
 Content-Type: application/json
 
 {
@@ -60,4 +60,4 @@ Content-Type: application/json
 
 ### DELETE
 @idToDelete = {{createCategoriaToDelete.response.body.data.id}}
-DELETE http://localhost:3000/api/items/categorias/{{idToDelete}}
+DELETE http://localhost:3000/api/categorias/{{idToDelete}}

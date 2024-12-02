@@ -11,10 +11,11 @@ Content-Type: application/json
     "descripcion": "Pista para autos con curvas y elevaciones.",
     "precio": 29.99,
     "marca": "TrackMasters",
-    "cantVendidos": 250,
+    "cant_vendidos": 250,
     "estado": "Activo",
     "stock": 100,
-    "categoria": 1
+    "categoria": {      
+    }
     // foto? pista_autos.jpg
 }
 
