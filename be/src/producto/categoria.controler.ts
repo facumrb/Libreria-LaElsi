@@ -96,7 +96,7 @@ async function findOne(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const categoria = await em.getReference(Categoria, id);
+    const categoria = await em.findOneOrFail(Categoria, { id });
     em.assign(categoria, req.body.sanitizedInput);
     await em.flush();
     res.status(200).json({ message: 'Categoría actualizada', data: categoria });
