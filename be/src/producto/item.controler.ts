@@ -1,9 +1,59 @@
+// Revisar para imágenes
+
 import { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import { Item } from './item.entity.js';
 import { orm } from '../shared/db/orm.js';
 import multer from 'multer';
-import path from 'path';
 import fs from 'node:fs';
+import path from 'node:path';
+
+const uploadDir = path.join(__dirname, 'imagenesProductos');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+// Configuración de multer para cargar múltiples imágenes
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'imagenesProductos'); // Carpeta donde se guardarán las imágenes
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Renombrar el archivo
+  },
+});
+
+let cantMaxFotos = 10;
+const imagenProducto = multer({ storage }).array('Fotos', cantMaxFotos); // 'Fotos' es el nombre del campo en el formulario
+
+// Definir la función de carga de imágenes
+async function cargaImagenes(req: express.Request, res: express.Response) {
+  // Verificar si se han subido archivos
+  if (!req.files || (Array.isArray(req.files) && req.files.length === 0)) {
+    return res.status(400).send('No se han subido archivos.');
+  }
+
+  try {
+    const filePaths: string[] = [];
+
+    // Convertir req.files a un arreglo si es necesario
+    const filesArray = Array.isArray(req.files) ? req.files : Object.values(req.files).flat();
+
+    for (const file of filesArray) {
+      const uploadPath = path.join(__dirname, 'imagenes', file.originalname);
+      await fs.promises.writeFile(uploadPath, file.buffer);
+      filePaths.push(uploadPath);
+    }
+
+    res.status(200).send('Imágenes guardadas: ' + filePaths.join(', '));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).send('Error al guardar las imágenes: ' + error.message);
+    } else {
+      res.status(500).send('Error al guardar las imágenes: ' + String(error));
+    }
+  }
+}
 
 const em = orm.em;
 
@@ -33,25 +83,6 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-// Configuración de multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'imagenesProductos/'); // Carpeta donde se guardarán las imágenes
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Renombrar el archivo
-  },
-});
-
-/*
-function guardaImagen(file) {
-  const;
-}
-*/
-
-const imagenProducto = multer({ storage });
-
-// Función para agregar un nuevo item con la imagen
 async function add(req: Request, res: Response) {
   try {
     const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
@@ -162,4 +193,4 @@ async function remove(req: Request, res: Response) {
   }
 }
 
-export { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory, imagenProducto };
+export { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory, cargaImagenes, imagenProducto, uploadDir };

@@ -38,7 +38,6 @@ async function searchCategorias(req: Request, res: Response) {
   }
 }
 
-/*
 async function add(req: Request, res: Response) {
   try {
     const { nombre, descripcion } = req.body.sanitizedInput;
@@ -59,17 +58,6 @@ async function add(req: Request, res: Response) {
     res.status(201).json({ message: 'Categoría creada', data: categoria });
   } catch (error: any) {
     console.error('Error al crear categoría:', error);
-    res.status(500).json({ message: 'Error al crear la categoría' });
-  }
-}
-*/
-
-async function add(req: Request, res: Response) {
-  try {
-    const categoria = em.create(Categoria, req.body.sanitizedInput);
-    await em.flush();
-    res.status(201).json({ message: 'Categoría creada', data: categoria });
-  } catch (error: any) {
     res.status(500).json({ message: 'Error al crear la categoría' });
   }
 }
