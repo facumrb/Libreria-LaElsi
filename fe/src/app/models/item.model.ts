@@ -3,7 +3,7 @@ import { IApiCategoria } from './categoria.model';
 export interface IApiItem {
   id: number; // Identificador único del item
   nombre: string; // Nombre del item
-  foto?: string; // URL de la foto del item
+  //foto?: string; // URL de la foto del item
   descripcion?: string; // Descripción del item
   precio: number; // Precio del item
   marca: string; // Marca del item

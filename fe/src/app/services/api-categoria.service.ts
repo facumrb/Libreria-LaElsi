@@ -41,7 +41,7 @@ export class ApiCategoriaService {
 
   updateCategoria(
     id: number,
-    categoria: Partial<IApiCategoria>
+    categoria: IApiCategoria
   ): Observable<IApiCategoria> {
     return this._http
       .put<{ message: string; data: IApiCategoria }>(

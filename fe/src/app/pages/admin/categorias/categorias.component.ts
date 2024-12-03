@@ -53,6 +53,12 @@ export class CategoriasComponent implements OnInit {
     this.loadCategorias();
   }
 
+  loadCategorias(): void {
+    this._apiService.getAllCategorias().subscribe({
+      next: (data: IApiCategoria[]) => (this.categorias = data),
+    });
+  }
+
   onSearch(): void {
     const trimmedQuery = this.searchQuery.trim();
     if (trimmedQuery) {
@@ -68,12 +74,6 @@ export class CategoriasComponent implements OnInit {
     } else {
       this.loadCategorias(); // Cargar todas las categorías si no hay búsqueda
     }
-  }
-
-  loadCategorias(): void {
-    this._apiService.getAllCategorias().subscribe({
-      next: (data: IApiCategoria[]) => (this.categorias = data),
-    });
   }
 
   openModal(mode: 'add' | 'edit', categoria?: IApiCategoria): void {
