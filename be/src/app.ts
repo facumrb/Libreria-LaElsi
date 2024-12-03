@@ -1,8 +1,11 @@
+// Revisar para imágenes
+
 import 'reflect-metadata';
 import express from 'express';
 import { administradorRouter } from './administrador/administrador.routes.js';
 import { categoriaRouter } from './producto/categoria.routes.js';
 import { itemRouter } from './producto/item.routes.js';
+import { uploadDir } from './producto/item.controler.js';
 import { orm, syncSchema } from './shared/db/orm.js';
 import { RequestContext } from '@mikro-orm/core';
 import cors from 'cors';
@@ -20,6 +23,8 @@ app.use((req, res, next) => {
 app.use('/api/categorias', categoriaRouter);
 app.use('/api/items', itemRouter);
 app.use('/api/administradores', administradorRouter);
+// Ruta para ver imágenes
+app.use('/api/items/imagenesProductos', express.static(uploadDir));
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'Recurso no encontrado' });

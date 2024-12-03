@@ -1,5 +1,7 @@
+// Revisar para imágenes
+
 import { Router } from 'express';
-import { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory, imagenProducto } from './item.controler.js';
+import { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory, imagenProducto, cargaImagenes, uploadDir } from './item.controler.js';
 
 export const itemRouter = Router();
 
@@ -14,8 +16,5 @@ itemRouter.delete('/:id', remove);
 itemRouter.get('/search', searchItemsByText); // Buscar items por texto
 itemRouter.get('/category/:categoryId', findItemsByCategory); // Obtener items por categoría
 itemRouter.get('/:id', findOne);
-/*itemRouter.post('/imagenesProductos/single', imagenProducto.single('fotoProducto'), (req, res) => {
-  console.log(req.file);
-  res.send('Terminado');
-});
-*/
+// Ruta para manejar la carga de imágenes
+itemRouter.post('/imagenesProductos/multi', imagenProducto, cargaImagenes);
