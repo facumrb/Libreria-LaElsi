@@ -7,6 +7,10 @@ import { orm } from '../shared/db/orm.js';
 import multer from 'multer';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const uploadDir = path.join(__dirname, 'imagenesProductos');
 if (!fs.existsSync(uploadDir)) {
