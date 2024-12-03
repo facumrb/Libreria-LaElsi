@@ -61,7 +61,7 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
   req.body.sanitizedInput = {
     nombre: req.body.nombre,
     categoria: req.body.categoria,
-    // foto: req.body.foto,
+    fotos: req.body.fotos,
     decripcion: req.body.descripcion,
     precio: req.body.precio,
     marca: req.body.marca,
@@ -86,7 +86,15 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
 async function add(req: Request, res: Response) {
   try {
     const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
-    //const foto = req.file?.path; // Obtener la ruta de la imagen cargada
+    // Obtener las rutas de todas las imágenes cargadas
+    const fotos = [];
+    if (Array.isArray(req.files)) {
+      for (let i = 0; i < req.files.length; i++) {
+        fotos.push(req.files[i].path);
+      }
+    } else {
+      console.error('req.files no es un arreglo');
+    }
 
     // Validaciones para asegurarse de que los atributos no sean nulos
     if (!nombre) {
@@ -108,7 +116,7 @@ async function add(req: Request, res: Response) {
     // Crear un nuevo item utilizando los datos sanitizados del cuerpo de la solicitud
     const itemData = {
       ...req.body.sanitizedInput,
-      // foto, // Asignar la ruta de la imagen al item
+      fotos, // Asignar la ruta de la imagen al item
       estado: req.body.sanitizedInput.estado || 'Activo',
       cant_vendidos: 0, // Inicializar con 0
       // aReservar: false,
