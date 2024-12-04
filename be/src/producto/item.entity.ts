@@ -11,8 +11,8 @@ export class Item extends BaseEntity {
   @Property({ nullable: true })
   fotos?: string[]; // Array de rutas de imágenes */
 
-  @Property({ nullable: true })
-  descripcion?: string;
+  @Property({ nullable: false })
+  descripcion!: string;
 
   @Property({ nullable: false })
   precio!: number;

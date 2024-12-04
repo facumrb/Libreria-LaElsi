@@ -9,7 +9,7 @@ function sanitizeCategoriaInput(req: Request, res: Response, next: NextFunction)
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     estado: req.body.estado,
-    items: req.body.items,
+    items: req.body.items
   };
   //more checks here
 
@@ -28,7 +28,7 @@ async function searchCategorias(req: Request, res: Response) {
     const categorias = await em.find(
       Categoria,
       {
-        $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }],
+        $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }]
       },
       { populate: ['items'] }
     );
@@ -49,7 +49,7 @@ async function add(req: Request, res: Response) {
     const categoriaData = {
       nombre,
       descripcion,
-      estado: req.body.sanitizedInput.estado || 'Activo',
+      estado: req.body.sanitizedInput.estado || 'Activo'
     };
 
     const categoria = em.create(Categoria, categoriaData);
@@ -84,7 +84,7 @@ async function findOne(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const categoria = await em.findOneOrFail(Categoria, { id });
+    const categoria = await em.findOneOrFail(Categoria, { id }, { populate: ['items'] });
     em.assign(categoria, req.body.sanitizedInput);
     await em.flush();
     res.status(200).json({ message: 'Categoría actualizada', data: categoria });

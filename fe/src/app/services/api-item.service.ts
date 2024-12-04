@@ -46,7 +46,7 @@ export class ApiItemService {
 
   updateItem(id: number, item: Partial<IApiItem>): Observable<IApiItem> {
     return this._http
-      .put<{ message: string; data: IApiItem }>(`${this.apiUrl}/${id}`, item)
+      .patch<{ message: string; data: IApiItem }>(`${this.apiUrl}/${id}`, item)
       .pipe(map((response) => response.data));
   }
 

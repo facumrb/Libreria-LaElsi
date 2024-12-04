@@ -181,10 +181,10 @@ async function findOne(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const itemAActualizar = await em.getReference(Item, id);
-    em.assign(itemAActualizar, req.body.sanitizedInput);
+    const item = await em.findOneOrFail(Item, { id });
+    em.assign(item, req.body.sanitizedInput);
     await em.flush();
-    res.status(200).json({ message: 'Item actualizado', data: itemAActualizar });
+    res.status(200).json({ message: 'Item actualizado', data: item });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
