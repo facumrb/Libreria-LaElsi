@@ -7,9 +7,9 @@ export class Item extends BaseEntity {
   @Property({ nullable: false, unique: true })
   nombre!: string;
 
-  // Campo para almacenar las rutas de las imágenes
+  /* // Campo para almacenar las rutas de las imágenes
   @Property({ nullable: true })
-  fotos?: string[]; // Array de rutas de imágenes
+  fotos?: string[]; // Array de rutas de imágenes */
 
   @Property({ nullable: true })
   descripcion?: string;

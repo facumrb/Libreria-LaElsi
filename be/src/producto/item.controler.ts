@@ -1,10 +1,8 @@
-// Revisar para imágenes
-
 import { Request, Response, NextFunction } from 'express';
 import express from 'express';
 import { Item } from './item.entity.js';
 import { orm } from '../shared/db/orm.js';
-import multer from 'multer';
+/* import multer from 'multer';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
@@ -24,7 +22,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname)); // Renombrar el archivo
-  },
+  }
 });
 
 let cantMaxFotos = 10;
@@ -57,7 +55,7 @@ async function cargaImagenes(req: express.Request, res: express.Response) {
       res.status(500).send('Error al guardar las imágenes: ' + String(error));
     }
   }
-}
+} */
 
 const em = orm.em;
 
@@ -65,13 +63,13 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
   req.body.sanitizedInput = {
     nombre: req.body.nombre,
     categoria: req.body.categoria,
-    fotos: req.body.fotos,
-    decripcion: req.body.descripcion,
+    //fotos: req.body.fotos,
+    descripcion: req.body.descripcion,
     precio: req.body.precio,
     marca: req.body.marca,
     cant_vendidos: req.body.cant_vendidos,
     estado: req.body.estado,
-    stock: req.body.stock,
+    stock: req.body.stock
     //fechaDeAlta: req.body.fechaDeAlta,
     //fechaDeActualizacion: req.body.fechaDeActualizacion,
     //aReservar: req.body.aReservar,
@@ -89,7 +87,7 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
 
 async function add(req: Request, res: Response) {
   try {
-    const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
+    /* const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
     //  descripcion, estado, cant_vendidos ?
     // Validaciones para asegurarse de que los atributos no sean nulos
     if (!nombre) {
@@ -120,13 +118,13 @@ async function add(req: Request, res: Response) {
     // Crear un nuevo item utilizando los datos sanitizados del cuerpo de la solicitud
     const itemData = {
       ...req.body.sanitizedInput,
-      fotos, // Asignar la ruta de la imagen al item
+      fotos // Asignar la ruta de la imagen al item
       // aReservar: false,
       // cantidadAReservar: 0,
-    };
+    }; */
 
-    const item = em.create(Item, itemData);
-    await em.flush(); // Guardar el nuevo item en la base de datos
+    const item = em.create(Item, req.body.sanitizedInput); //anteriormente itemData
+    await em.flush();
 
     res.status(201).json({ message: 'Item creado', data: item });
   } catch (error: any) {
@@ -141,7 +139,7 @@ async function searchItemsByText(req: Request, res: Response) {
 
   try {
     const items = await em.find(Item, {
-      $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }, { marca: { $like: `%${query}%` } }],
+      $or: [{ nombre: { $like: `%${query}%` } }, { descripcion: { $like: `%${query}%` } }, { marca: { $like: `%${query}%` } }]
     }); // Buscar por nombre, descripcion y marca
     res.status(200).json({ message: 'Items encontrados', data: items });
   } catch (error: any) {
@@ -203,4 +201,4 @@ async function remove(req: Request, res: Response) {
   }
 }
 
-export { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory, cargaImagenes, imagenProducto, uploadDir };
+export { sanitizeItemInput, findAll, findOne, add, update, remove, searchItemsByText, findItemsByCategory /* cargaImagenes, imagenProducto, uploadDir */ };
