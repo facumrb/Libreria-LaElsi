@@ -89,7 +89,6 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
 
 async function add(req: Request, res: Response) {
   try {
-    /*
     const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
     //  descripcion, estado, cant_vendidos ?
     // Validaciones para asegurarse de que los atributos no sean nulos
@@ -108,7 +107,7 @@ async function add(req: Request, res: Response) {
     if (stock === undefined || stock === null) {
       return res.status(400).json({ message: 'El stock es requerido' });
     }
-    */
+
     // Obtener las rutas de todas las imágenes cargadas
     const fotos = [];
     if (Array.isArray(req.files)) {
