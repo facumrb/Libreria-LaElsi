@@ -99,7 +99,7 @@ async function add(req: Request, res: Response) {
     } else {
       console.error('req.files no es un arreglo');
     }
-
+    //  descripcion, estado, cant_vendidos ?
     // Validaciones para asegurarse de que los atributos no sean nulos
     if (!nombre) {
       return res.status(400).json({ message: 'El nombre es requerido' });
@@ -121,8 +121,6 @@ async function add(req: Request, res: Response) {
     const itemData = {
       ...req.body.sanitizedInput,
       fotos, // Asignar la ruta de la imagen al item
-      estado: req.body.sanitizedInput.estado || 'Activo',
-      cant_vendidos: 0, // Inicializar con 0
       // aReservar: false,
       // cantidadAReservar: 0,
     };
