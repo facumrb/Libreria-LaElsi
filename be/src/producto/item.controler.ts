@@ -161,7 +161,7 @@ async function findItemsByCategory(req: Request, res: Response) {
 
 async function findAll(req: Request, res: Response) {
   try {
-    const items = await em.find(Item, {}); // , { populate: ['categoria'] }
+    const items = await em.find(Item, {}, { populate: ['categoria'] });
     res.status(200).json({ message: 'Todos los Items fueron encontrados', data: items });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -171,7 +171,7 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const item = await em.findOneOrFail(Item, { id }); // , { populate: ['categoria'] }
+    const item = await em.findOneOrFail(Item, { id }, { populate: ['categoria'] });
     res.status(200).json({ message: 'Item encontrado', data: item });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
