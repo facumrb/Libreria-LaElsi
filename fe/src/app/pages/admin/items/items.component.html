@@ -23,14 +23,16 @@
         <td>{{ item.precio | currency }}</td>
         <td>{{ item.estado }}</td>
         <td>{{ item.stock }}</td>
-        <td>{{ item.cantVendidos }}</td>
+        <td>{{ item.cant_vendidos }}</td>
         <td>{{ item.categoria.nombre }}</td>
-        <td style="text-align: center">
+        <td class="btn-actions">
+          <!-- Icono de Editar -->
           <button class="btn btn-edit" (click)="openModal('edit', item)">
-            Editar
+            <i class="bi bi-pencil-fill"></i>
           </button>
+          <!-- Icono de Eliminar -->
           <button class="btn btn-delete" (click)="deleteItem(item.id)">
-            Eliminar
+            <i class="bi bi-trash-fill"></i>
           </button>
         </td>
       </tr>
@@ -105,6 +107,7 @@
             class="form-control"
             id="descripcion"
             formControlName="descripcion"
+            name="descripcion"
             [ngClass]="{
               'is-invalid':
                 hasErrors('descripcion', 'required') ||
@@ -173,6 +176,7 @@
             id="estado"
             class="form-control"
             formControlName="estado"
+            name="estado"
             [ngClass]="{ 'is-invalid': hasErrors('estado', 'required') }"
           >
             <option value="" disabled selected>Seleccione un estado</option>
@@ -186,24 +190,24 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="cantVendidos">Cantidad Vendida</label>
+          <label for="cant_vendidos">Cantidad Vendida</label>
           <input
             type="text"
             class="form-control"
-            id="cantVendidos"
-            formControlName="cantVendidos"
-            name="cantVendidos"
+            id="cant_vendidos"
+            formControlName="cant_vendidos"
+            name="cant_vendidos"
             [ngClass]="{
               'is-invalid':
-                hasErrors('cantVendidos', 'required') ||
-                hasErrors('cantVendidos', 'pattern')
+                hasErrors('cant_vendidos', 'required') ||
+                hasErrors('cant_vendidos', 'pattern')
             }"
           />
           <!-- Contenedor de mensajes de error -->
           <div class="error-container">
-            @if (hasErrors('cantVendidos', 'required')) {
+            @if (hasErrors('cant_vendidos', 'required')) {
             <div class="text-danger">La cantidad vendida es obligatoria.</div>
-            } @if (hasErrors('cantVendidos', 'pattern')) {
+            } @if (hasErrors('cant_vendidos', 'pattern')) {
             <div class="text-danger">El formato es inválido.</div>
             }
           </div>
@@ -214,6 +218,7 @@
             id="categoria"
             class="form-control"
             formControlName="categoria"
+            name="categoria"
             [ngClass]="{ 'is-invalid': hasErrors('categoria', 'required') }"
           >
             <option value="" disabled selected>Seleccione una categoria</option>

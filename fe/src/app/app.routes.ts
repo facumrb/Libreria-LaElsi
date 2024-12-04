@@ -10,7 +10,8 @@ import { ItemsComponent } from './pages/admin/items/items.component';
 export const routes: Routes = [
   { path: 'login', component: LoginHomeComponent },
   {
-    path: 'admin' /* , canActivate: [adminGuard]*/,
+    path: 'admin',
+    canActivate: [adminGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'view-profile/:id', component: ViewProfileComponent },

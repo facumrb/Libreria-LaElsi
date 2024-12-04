@@ -37,19 +37,22 @@ export class ItemsComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_ ]*$'), // Permitir letras acentuadas y espacios
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
         ],
       ],
       descripcion: [
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_ ]*$'), // Permitir letras acentuadas y espacios
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
         ],
       ],
       precio: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       marca: ['', [Validators.required]],
-      cantVendidos: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      cant_vendidos: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]*$')],
+      ],
       estado: ['', [Validators.required]],
       stock: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       categoria: ['', [Validators.required]],
@@ -57,8 +60,8 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadItems();
     this.loadCategorias();
+    this.loadItems();
   }
 
   loadCategorias(): void {
@@ -73,26 +76,33 @@ export class ItemsComponent implements OnInit {
     });
   }
 
+  /* cargarCategoria(id: number): void {
+    this._apiCategoriaService.getCategoriaById(id).subscribe({
+      next: (data: IApiCategoria) => (this.catNombre = data.nombre),
+    });
+  } */
+
   openModal(mode: 'add' | 'edit', item?: IApiItem): void {
     this.modalMode = mode;
     this.isModalOpen = true;
     document.body.style.overflow = 'hidden';
     if (mode === 'edit' && item) {
       this.itemSeleccionado = item;
-      this.formItem.patchValue(item);
+      this.formItem.patchValue({ ...item, categoria: item.categoria.id });
     } else {
       this.formItem.reset();
-      this.formItem.patchValue({ estado: '', categoria: '', cantVendidos: 0 });
+      this.formItem.patchValue({ estado: '', categoria: '', cant_vendidos: 0 });
     }
   }
 
   closeModal(): void {
     this.isModalOpen = false;
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = 'hidden';
   }
 
   onSubmit(): void {
     if (this.formItem.valid) {
+      console.log(this.formItem.value);
       const itemData = {
         ...this.itemSeleccionado,
         ...this.formItem.value,
@@ -124,7 +134,7 @@ export class ItemsComponent implements OnInit {
     );
   }
 
-  onSearch(): void {
+  /* onSearch(): void {
     const trimmedQuery = this.searchQuery.trim();
     if (trimmedQuery) {
       this._apiService.searchItems(trimmedQuery).subscribe({
@@ -139,5 +149,5 @@ export class ItemsComponent implements OnInit {
     } else {
       this.loadItems(); // Cargar todas las categorías si no hay búsqueda
     }
-  }
+  } */
 }

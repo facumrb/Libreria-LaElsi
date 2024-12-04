@@ -31,7 +31,12 @@ export class LoginHomeComponent {
     this.formLoginAdmin = this.formBuilder.group({
       usuario: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')],
+        [
+          Validators.required,
+          Validators.pattern(
+            '^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9áéíóúÁÉÍÓÚñÑ.,;:?!()_\'"-s]*$'
+          ),
+        ],
       ],
       password: ['', [Validators.required]],
     });
@@ -65,8 +70,7 @@ export class LoginHomeComponent {
         if (error.status === 401) {
           this.errorMessage = 'Usuario o contraseña incorrectos.';
         } else if (error.status >= 500) {
-          this.errorMessage =
-            'Error del servidor. Por favor, intenta más tarde.';
+          this.errorMessage = 'Usuario o contraseña incorrectos.'; //Error del servidor. Por favor, intenta más tarde.
         } else {
           this.errorMessage =
             'Ocurrió un error inesperado. Inténtalo más tarde.';

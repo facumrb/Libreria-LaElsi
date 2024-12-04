@@ -33,21 +33,24 @@ export class EditProfileComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_ ]*$'), // Permitir letras acentuadas y espacios
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
         ],
       ],
       apellido: [
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_ ]*$'), // Permitir letras acentuadas y espacios
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
         ],
       ],
 
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       usuario: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')],
+        [
+          Validators.required,
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
+        ],
       ],
       email: ['', [Validators.required, Validators.email]],
     });

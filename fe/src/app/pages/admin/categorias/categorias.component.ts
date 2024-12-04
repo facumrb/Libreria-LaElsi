@@ -35,14 +35,14 @@ export class CategoriasComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_ ]*$'), // Permitir letras acentuadas y espacios
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
         ],
       ],
       descripcion: [
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_ ]*$'), // Permitir letras acentuadas y espacios
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9.,;:?!()_\'"-\\s]*$'),
         ],
       ],
       estado: ['', [Validators.required]],
@@ -66,7 +66,7 @@ export class CategoriasComponent implements OnInit {
     );
   }
 
-  onSearch(): void {
+  /* onSearch(): void {
     const trimmedQuery = this.searchQuery.trim();
     if (trimmedQuery) {
       this._apiService.searchCategorias(trimmedQuery).subscribe({
@@ -81,7 +81,7 @@ export class CategoriasComponent implements OnInit {
     } else {
       this.loadCategorias(); // Cargar todas las categorías si no hay búsqueda
     }
-  }
+  } */
 
   openModal(mode: 'add' | 'edit', categoria?: IApiCategoria): void {
     this.modalMode = mode;
@@ -97,6 +97,7 @@ export class CategoriasComponent implements OnInit {
 
   closeModal(): void {
     this.isModalOpen = false;
+    document.body.style.overflow = 'hidden';
   }
 
   onSubmit(): void {

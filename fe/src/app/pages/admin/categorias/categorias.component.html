@@ -1,19 +1,5 @@
 <div class="categorias-container">
   <h1>Gestión de Categorías</h1>
-  <!-- <div class="search-filter-container">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Buscar categorías..."
-      [(ngModel)]="searchQuery"
-      (input)="onSearch()"
-    />
-    <select class="form-control filter-select" [(ngModel)]="filterState">
-      <option value="">Todos los estados</option>
-      <option value="Activo">Activo</option>
-      <option value="Inactivo">Inactivo</option>
-    </select>
-  </div> -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -29,18 +15,17 @@
         <td>{{ categoria.nombre }}</td>
         <td>{{ categoria.descripcion }}</td>
         <td>{{ categoria.estado }}</td>
-        <td style="text-align: center">
-          <button
-            class="btn btn-sm btn-primary"
-            (click)="openModal('edit', categoria)"
-          >
-            Editar
+        <td class="btn-actions">
+          <!-- Icono de Editar -->
+          <button class="btn btn-edit" (click)="openModal('edit', categoria)">
+            <i class="bi bi-pencil-fill"></i>
           </button>
+          <!-- Icono de Eliminar -->
           <button
-            class="btn btn-sm btn-danger"
+            class="btn btn-delete"
             (click)="deleteCategoria(categoria.id)"
           >
-            Eliminar
+            <i class="bi bi-trash-fill"></i>
           </button>
         </td>
       </tr>
@@ -48,7 +33,7 @@
     </tbody>
   </table>
   <div class="btn-add-container">
-    <button class="btn btn-success" (click)="openModal('add')">
+    <button class="btn btn-add" (click)="openModal('add')">
       Agregar Categoría
     </button>
   </div>
@@ -89,11 +74,12 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="descripcion" class="form-label">Descripción</label>
+        <label for="descripcion">Descripción</label>
         <textarea
           class="form-control"
           id="descripcion"
           formControlName="descripcion"
+          name="descripcion"
           [ngClass]="{
             'is-invalid':
               hasErrors('descripcion', 'required') ||
@@ -112,11 +98,12 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="estado" class="form-label">Estado</label>
+        <label for="estado">Estado</label>
         <select
           id="estado"
           class="form-control"
           formControlName="estado"
+          name="estado"
           [ngClass]="{ 'is-invalid': hasErrors('estado', 'required') }"
         >
           <option value="" disabled selected>Seleccione un estado</option>

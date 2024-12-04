@@ -57,6 +57,28 @@ h2 {
   font-size: 14px;
 }
 
+.btn-actions {
+  min-width: auto; /* Ancho mínimo para asegurar que los botones estén alineados */
+  display: flex; /* Usa flexbox para alinear los botones horizontalmente */
+  justify-content: center; /* Espaciado uniforme entre los botones */
+  align-items: center; /* Centra los botones verticalmente */
+  gap: 10px; /* Espacio entre los botones */
+}
+
+/* Estilos para los botones con iconos */
+.btn-edit,
+.btn-delete {
+  padding: 6px 10px; /* Ajusta el padding para que los botones sean más pequeños */
+  font-size: 18px; /* Ajusta el tamaño de los íconos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Hace que los botones tengan forma circular */
+  width: 40px;
+  height: 40px;
+}
+
+/* Color de los botones */
 .btn-edit {
   background-color: #ffc107;
   color: white;
@@ -73,6 +95,11 @@ h2 {
 
 .btn-delete:hover {
   background-color: #c82333;
+}
+
+/* Centrado y tamaño del icono */
+.btn i {
+  font-size: 20px; /* Tamaño del ícono */
 }
 
 .btn-add-container {
@@ -145,12 +172,17 @@ textarea#descripcion {
   font-weight: bold;
 }
 
+label {
+  font-size: 15px; /* Aumenta el tamaño de la letra de las etiquetas */
+  font-weight: bold;
+}
+
 .form-control {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ced4da;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .form-control:focus {
@@ -159,8 +191,13 @@ textarea#descripcion {
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
 }
 
+.error-container {
+  margin-top: 4px; /* Espacio entre el campo y el mensaje de error */
+}
+
 .error-container .text-danger {
-  font-size: 12px;
+  font-size: 13px;
+  margin-top: 4px;
 }
 
 .modal-actions {
@@ -195,6 +232,8 @@ textarea#descripcion {
   background-color: #5a6268;
 }
 
-label {
-  font-weight: normal;
+.btn-submit,
+.btn-cancel {
+  padding: 10px 15px; /* Aumenta el tamaño de los botones */
+  font-size: 14px; /* Aumenta el tamaño de la fuente de los botones */
 }

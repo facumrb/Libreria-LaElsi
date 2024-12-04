@@ -21,12 +21,4 @@ export class AuthService {
       )
       .pipe(map((response) => response.data));
   }
-
-  logout(): void {
-    localStorage.removeItem('token');
-  }
-
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
-  }
 }
