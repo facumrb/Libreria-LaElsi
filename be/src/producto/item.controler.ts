@@ -89,16 +89,8 @@ function sanitizeItemInput(req: Request, res: Response, next: NextFunction) {
 
 async function add(req: Request, res: Response) {
   try {
+    /*
     const { nombre, categoria, precio, marca, stock } = req.body.sanitizedInput;
-    // Obtener las rutas de todas las imágenes cargadas
-    const fotos = [];
-    if (Array.isArray(req.files)) {
-      for (let i = 0; i < req.files.length; i++) {
-        fotos.push(req.files[i].path);
-      }
-    } else {
-      console.error('req.files no es un arreglo');
-    }
     //  descripcion, estado, cant_vendidos ?
     // Validaciones para asegurarse de que los atributos no sean nulos
     if (!nombre) {
@@ -116,7 +108,16 @@ async function add(req: Request, res: Response) {
     if (stock === undefined || stock === null) {
       return res.status(400).json({ message: 'El stock es requerido' });
     }
-
+    */
+    // Obtener las rutas de todas las imágenes cargadas
+    const fotos = [];
+    if (Array.isArray(req.files)) {
+      for (let i = 0; i < req.files.length; i++) {
+        fotos.push(req.files[i].path);
+      }
+    } else {
+      console.error('req.files no es un arreglo');
+    }
     // Crear un nuevo item utilizando los datos sanitizados del cuerpo de la solicitud
     const itemData = {
       ...req.body.sanitizedInput,
