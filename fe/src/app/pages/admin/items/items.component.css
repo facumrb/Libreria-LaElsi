@@ -1,100 +1,95 @@
-.items-container {
-  max-width: 800px;
-  margin: 20px auto;
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
   padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1,
 h2 {
   text-align: center;
-  font-size: 1.8rem;
-  color: #444;
+  font-weight: bold;
 }
 
-.search-container {
-  margin: 10px 0;
-  display: flex;
-  justify-content: left;
+/* Container Styles */
+.items-container {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.search-container input {
+/* Table Styles */
+.table {
   width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-/* Tabla */
-table {
-  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
   border-collapse: collapse;
-  margin-top: 15px;
 }
 
-td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-th {
-  background-color: #333;
+.table thead {
+  background-color: #007bff;
   color: white;
-  padding: 12px;
-  border: 1px solid #ddd;
+}
+
+.table th,
+.table td {
   text-align: center;
+  padding: 8px;
+  border: 1px solid #dee2e6;
 }
 
-.actions-column {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
 }
 
-/* Botones */
-button {
-  padding: 8px 15px;
+.table-striped tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.btn {
+  padding: 8px 12px;
   border: none;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  border-radius: 4px;
   cursor: pointer;
-  color: #fff;
+  font-size: 14px;
 }
 
 .btn-edit {
-  background-color: #28a745;
+  background-color: #ffc107;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
 }
 
 .btn-delete {
   background-color: #dc3545;
+  color: white;
 }
 
-/* Contenedor del botón Agregar */
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
 .btn-add-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
+  text-align: right;
+  margin-top: 10px;
 }
 
-/* Botón "Agregar Item" */
 .btn-add {
-  background-color: #6c757d; /* Gris oscuro */
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  background-color: #28a745;
+  color: white;
 }
 
 .btn-add:hover {
-  background-color: #5a6268; /* Gris ligeramente más oscuro */
+  background-color: #218838;
 }
 
+/* Modal Styles */
 .modal {
   display: none;
   position: fixed;
@@ -102,10 +97,10 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .modal.show {
@@ -113,18 +108,59 @@ button {
 }
 
 .modal-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  max-width: 90%;
 }
 
-textarea {
-  height: 100px;
-  padding: 10px;
-  resize: none; /* Disable resizing */
+.modal h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #343a40;
+}
+
+/* Form Layout */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 15px); /* Two columns */
+}
+
+.form-group.full-width {
+  flex: 1 1 100%; /* Full width */
+}
+
+textarea#descripcion {
+  resize: none;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+.error-container .text-danger {
+  font-size: 12px;
 }
 
 .modal-actions {
@@ -133,24 +169,32 @@ textarea {
   margin-top: 20px;
 }
 
+.modal-actions button {
+  margin-right: 10px;
+}
+
+.modal-actions button:last-child {
+  margin-right: 0;
+}
+
 .btn-submit {
-  background-color: #28a745;
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+
+.btn-submit:hover {
+  background-color: #218838; /* Verde oscuro */
 }
 
 .btn-cancel {
   background-color: #6c757d;
+  color: white;
 }
 
-.error-container {
-  min-height: 1.2rem; /* Altura mínima más pequeña */
-  visibility: hidden; /* Oculta los mensajes por defecto */
+.btn-cancel:hover {
+  background-color: #5a6268;
 }
 
-.error-container div {
-  font-size: 1rem; /* Tamaño de fuente más compacto */
-  line-height: 1.2rem; /* Altura de línea consistente con el tamaño */
-}
-
-.error-container .text-danger {
-  visibility: visible; /* Solo muestra mensajes con errores */
+label {
+  font-weight: normal;
 }

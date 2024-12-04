@@ -1,9 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ApiCategoriaService } from '../../../services/api-categoria.service';
-import { IApiCategoria } from '../../../models/categoria.model';
 import { IApiItem } from '../../../models/item.model';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ApiItemService } from '../../../services/api-item.service';
+import { IApiCategoria } from '../../../models/categoria.model';
+import { ApiCategoriaService } from '../../../services/api-categoria.service';
 
 @Component({
   selector: 'app-items',
@@ -23,13 +22,14 @@ export class ItemsComponent implements OnInit {
   formItem!: FormGroup;
   loading: boolean = true;
   errorMessage: string = '';
-  private _router = inject(Router);
   private _apiService = inject(ApiItemService);
   items: IApiItem[] = [];
   isModalOpen = false;
   itemSeleccionado?: IApiItem;
   modalMode: 'add' | 'edit' = 'add';
   searchQuery: string = '';
+  categorias: IApiCategoria[] = [];
+  private _apiCategoriaService = inject(ApiCategoriaService);
 
   constructor(private formBuilder: FormBuilder) {
     this.formItem = this.formBuilder.group({
@@ -58,6 +58,13 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadItems();
+    this.loadCategorias();
+  }
+
+  loadCategorias(): void {
+    this._apiCategoriaService.getAllCategorias().subscribe({
+      next: (data: IApiCategoria[]) => (this.categorias = data),
+    });
   }
 
   loadItems(): void {
@@ -69,17 +76,19 @@ export class ItemsComponent implements OnInit {
   openModal(mode: 'add' | 'edit', item?: IApiItem): void {
     this.modalMode = mode;
     this.isModalOpen = true;
+    document.body.style.overflow = 'hidden';
     if (mode === 'edit' && item) {
       this.itemSeleccionado = item;
       this.formItem.patchValue(item);
     } else {
       this.formItem.reset();
-      this.formItem.patchValue({ estado: '' });
+      this.formItem.patchValue({ estado: '', categoria: '', cantVendidos: 0 });
     }
   }
 
   closeModal(): void {
     this.isModalOpen = false;
+    document.body.style.overflow = 'auto';
   }
 
   onSubmit(): void {

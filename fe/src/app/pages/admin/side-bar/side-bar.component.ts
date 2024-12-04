@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 })
 export class SideBarComponent {
   private _router = inject(Router);
+  @Output() onMenuSelect = new EventEmitter<string>();
+
+  selectMenu(menu: string): void {
+    this.onMenuSelect.emit(menu);
+  }
 
   Productos(): void {
     this._router.navigate(['/admin/items']);

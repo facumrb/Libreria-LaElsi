@@ -21,13 +21,13 @@ export class CategoriasComponent implements OnInit {
   formCategory!: FormGroup;
   loading: boolean = true;
   errorMessage: string = '';
-  private _router = inject(Router);
   private _apiService = inject(ApiCategoriaService);
   categorias: IApiCategoria[] = [];
   isModalOpen = false;
   categoriaSeleccionada?: IApiCategoria;
   modalMode: 'add' | 'edit' = 'add';
   searchQuery: string = '';
+  filterState: string = '';
 
   constructor(private formBuilder: FormBuilder) {
     this.formCategory = this.formBuilder.group({
@@ -54,9 +54,16 @@ export class CategoriasComponent implements OnInit {
   }
 
   loadCategorias(): void {
-    this._apiService.getAllCategorias().subscribe({
-      next: (data: IApiCategoria[]) => (this.categorias = data),
+    this._apiService.getAllCategorias().subscribe((data) => {
+      this.categorias = data;
+      this.applyFilters();
     });
+  }
+
+  applyFilters(): void {
+    this.categorias = this.categorias.filter((categoria) =>
+      this.filterState ? categoria.estado === this.filterState : true
+    );
   }
 
   onSearch(): void {

@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { ApiAdministradorService } from '../../services/api-administrador.service';
 import { AuthService } from '../../services/auth.service';
+import { AdminDataService } from '../../services/admin-data-service.service';
 
 @Component({
   selector: 'app-login-home',
@@ -18,7 +19,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginHomeComponent {
   formLoginAdmin!: FormGroup;
-  private _apiService = inject(ApiAdministradorService);
+  private _adminDataService = inject(AdminDataService);
   private _authService = inject(AuthService);
   private _router = inject(Router);
   loading: boolean = false;
@@ -55,6 +56,7 @@ export class LoginHomeComponent {
     this._authService.login(usuario, password).subscribe({
       next: (data) => {
         this.loading = false;
+        this._adminDataService.setAdminId(data.id);
         this._router.navigate(['/admin/home']); // Redirigimos al home del administrador.
       },
       error: (error) => {

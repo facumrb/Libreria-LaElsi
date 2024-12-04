@@ -1,5 +1,5 @@
 .categorias-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
   background: #ffffff;
@@ -10,14 +10,14 @@
 h1,
 h2 {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   color: #444;
 }
 
-.search-container {
-  margin: 10px 0;
+.search-filter-container {
   display: flex;
-  justify-content: left;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .search-container input {
@@ -30,6 +30,18 @@ h2 {
 }
 
 /* Tabla */
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+.table-striped tbody tr.selected {
+  background-color: #d3f9d8;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -50,12 +62,6 @@ th {
   text-align: center;
 }
 
-.actions-column {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
 /* Botones */
 button {
   padding: 8px 15px;
@@ -64,6 +70,12 @@ button {
   font-size: 0.9rem;
   cursor: pointer;
   color: #fff;
+}
+
+.actions-column {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
 }
 
 .btn-edit {

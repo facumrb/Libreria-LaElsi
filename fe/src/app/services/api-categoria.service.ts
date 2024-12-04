@@ -44,7 +44,7 @@ export class ApiCategoriaService {
     categoria: IApiCategoria
   ): Observable<IApiCategoria> {
     return this._http
-      .put<{ message: string; data: IApiCategoria }>(
+      .patch<{ message: string; data: IApiCategoria }>(
         `${this.apiUrl}/${id}`,
         categoria
       )

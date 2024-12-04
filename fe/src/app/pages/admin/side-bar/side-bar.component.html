@@ -4,13 +4,19 @@
   </div>
   <ul class="sidebar-menu">
     <li>
-      <button class="sidebar-button" (click)="Productos()">Productos</button>
+      <button class="sidebar-button" (click)="selectMenu('productos')">
+        Productos
+      </button>
     </li>
     <li>
-      <button class="sidebar-button" (click)="Categorias()">Categorías</button>
+      <button class="sidebar-button" (click)="selectMenu('categorias')">
+        Categorías
+      </button>
     </li>
-    <li>
-      <button class="sidebar-button" (click)="Usuarios()">Usuarios</button>
-    </li>
+    <!-- <li>
+      <button class="sidebar-button" (click)="selectMenu('usuarios')">
+        Usuarios
+      </button>
+    </li> -->
   </ul>
 </div>

@@ -1,2 +1,9 @@
 <app-header></app-header>
-<app-side-bar></app-side-bar>
+<div class="main-container">
+  <app-side-bar (onMenuSelect)="loadComponent($event)"></app-side-bar>
+  <div class="content-container">
+    <ng-container *ngIf="currentComponent">
+      <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+    </ng-container>
+  </div>
+</div>

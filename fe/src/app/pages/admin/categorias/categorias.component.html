@@ -1,6 +1,6 @@
 <div class="categorias-container">
   <h1>Gestión de Categorías</h1>
-  <div class="search-container">
+  <!-- <div class="search-filter-container">
     <input
       type="text"
       class="form-control"
@@ -8,8 +8,13 @@
       [(ngModel)]="searchQuery"
       (input)="onSearch()"
     />
-  </div>
-  <table class="table-light">
+    <select class="form-control filter-select" [(ngModel)]="filterState">
+      <option value="">Todos los estados</option>
+      <option value="Activo">Activo</option>
+      <option value="Inactivo">Inactivo</option>
+    </select>
+  </div> -->
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -19,17 +24,20 @@
       </tr>
     </thead>
     <tbody>
-      @for (categoria of categorias; track $index) {
+      @for (categoria of categorias; track $index;) {
       <tr>
         <td>{{ categoria.nombre }}</td>
         <td>{{ categoria.descripcion }}</td>
         <td>{{ categoria.estado }}</td>
-        <td class="actions-column">
-          <button class="btn btn-edit" (click)="openModal('edit', categoria)">
+        <td style="text-align: center">
+          <button
+            class="btn btn-sm btn-primary"
+            (click)="openModal('edit', categoria)"
+          >
             Editar
           </button>
           <button
-            class="btn btn-delete"
+            class="btn btn-sm btn-danger"
             (click)="deleteCategoria(categoria.id)"
           >
             Eliminar
@@ -40,7 +48,7 @@
     </tbody>
   </table>
   <div class="btn-add-container">
-    <button class="btn btn-add" (click)="openModal('add')">
+    <button class="btn btn-success" (click)="openModal('add')">
       Agregar Categoría
     </button>
   </div>
