@@ -1,3 +1,6 @@
+# LAELSI
+ El negocio cuenta con sector de librería, juguetería, imprenta digital que incluye diseño gráfico y sellos (computación y cotillón se quiere incluir a futuro).
+
 # Propuesta TP DSW
 
 ## Grupo
@@ -22,7 +25,7 @@ La librería “LaElsi” es un negocio dedicado a la venta de productos de libr
 
 [Modelo de dominio](https://drive.google.com/file/d/1BKgDr1gZnPLR35idM9RRXJRmda47Xsil/view?usp=sharing)
 
-_Nota_: Actualizar modelo y utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+_Nota_: Actualizar modelo y utilizar diagramas con [Mermaid](https://mermaid.js.org).
 
 ## Alcance Funcional
 
@@ -35,7 +38,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Administrador<br>2. CRUD Categoría|
 |CRUD dependiente|1. CRUD Item {depende de} CRUD Categoría|
-|Listado<br>+<br>detalle|1. Listados de productos según la categoría, con límite de hasta X productos por página y con detalle al abrir producto|
+|Listado<br>+<br>detalle|1. Listados de items y categorías, los detalles se ven en listado|
 |CUU/Epic|1. Dar de alta un Item|
 
 Adicionales para Aprobación (ver lo que falta agregar)
