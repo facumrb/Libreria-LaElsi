@@ -1,7 +1,8 @@
-# TP DSW
-tags: #dsw #tp
+# LAELSI
+ El negocio cuenta con sector de librería, juguetería, imprenta digital que incluye diseño gráfico y sellos (computación y cotillón se quiere incluir a futuro).
 
-Status: draft
+# TP DSW2024
+UTN FRRo - Desarrollo de software
 
 ## 1. Objetivo
 
