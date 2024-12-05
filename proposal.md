@@ -1,7 +1,5 @@
 # LAELSI
- El negocio cuenta con sector de librería, juguetería, imprenta digital que incluye diseño gráfico y sellos (computación y cotillón se quiere incluir a futuro).
-
-# Propuesta TP DSW
+### Video
 
 ## Grupo
 
