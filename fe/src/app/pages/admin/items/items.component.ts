@@ -23,12 +23,17 @@ export class ItemsComponent implements OnInit {
   loading: boolean = true;
   errorMessage: string = '';
   private _apiService = inject(ApiItemService);
-  items: IApiItem[] = [];
+
   isModalOpen = false;
   itemSeleccionado?: IApiItem;
   modalMode: 'add' | 'edit' = 'add';
   searchQuery: string = '';
+
+  items: IApiItem[] = []; // Lista filtrada de productos
+  allItems: IApiItem[] = []; // Lista completa de productos
   categorias: IApiCategoria[] = [];
+  selectedCategoria: number = 0; // Almacena la categoría seleccionada
+
   private _apiCategoriaService = inject(ApiCategoriaService);
 
   constructor(private formBuilder: FormBuilder) {
@@ -72,8 +77,25 @@ export class ItemsComponent implements OnInit {
 
   loadItems(): void {
     this._apiService.getAllItems().subscribe({
-      next: (data: IApiItem[]) => (this.items = data),
+      next: (data: IApiItem[]) => {
+        this.items = data;
+        this.allItems = data; // Mantener una copia completa de los productos
+      },
     });
+  }
+
+  filterByCategoria(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement; // Aseguramos el tipo como HTMLSelectElement
+    const categoriaId = selectElement.value; // Obtenemos el valor seleccionado
+    const id = categoriaId ? +categoriaId : 0; // Convertimos a número o usamos 0 si está vacío
+
+    this.selectedCategoria = id;
+
+    if (id > 0) {
+      this.items = this.allItems.filter((item) => item.categoria.id === id);
+    } else {
+      this.items = [...this.allItems];
+    }
   }
 
   /* cargarCategoria(id: number): void {

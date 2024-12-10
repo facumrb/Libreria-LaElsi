@@ -11,6 +11,49 @@ h2 {
   font-weight: bold;
 }
 
+.filter-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Label Styling */
+.filter-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #343a40;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Select Styling */
+.filter-select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  width: auto; /* Ajusta el ancho automáticamente según el contenido */
+  max-width: 150px; /* Define un ancho máximo */
+  flex-grow: 1;
+}
+
+.filter-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Hover Effect */
+.filter-select:hover {
+  background-color: #f8f9fa;
+}
+
 /* Container Styles */
 .items-container {
   margin: 20px auto;

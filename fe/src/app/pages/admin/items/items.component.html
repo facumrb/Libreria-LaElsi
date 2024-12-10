@@ -1,5 +1,22 @@
 <div class="items-container">
   <h1>Gestión de Productos</h1>
+  <div class="filter-container">
+    <label for="categoriaFiltro" class="filter-label"
+      >Filtrar por Categoría:</label
+    >
+    <select
+      id="categoriaFiltro"
+      class="filter-select form-control"
+      (change)="filterByCategoria($event)"
+    >
+      <option value="">Todas las Categorías</option>
+      @for (categoria of categorias; track $index) {
+      <option [value]="categoria.id">
+        {{ categoria.nombre }}
+      </option>
+      }
+    </select>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
